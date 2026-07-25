@@ -1,0 +1,23 @@
+version = 1
+revision = 3
+requires-python = ">=3.13"
+
+[[package]]
+name = "liboqs-python"
+version = "0.16.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f7/67/e0c9047b2808967a83f81afc05d2ed0502a5ea005f55e19264d0483274c9/liboqs_python-0.16.0.tar.gz", hash = "sha256:ee01445ccfbeab8dced956a642ce1eb5ba69438caba7ec291eea14083627d5c0", size = 75345, upload-time = "2026-07-23T15:38:10.999Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/99/e9/f571a20c6d5845b964812a359f6be88cd87e73238e6a599a0f2bafc28933/liboqs_python-0.16.0-py3-none-any.whl", hash = "sha256:50bb11a9767b88f68099cedef8de09f798f31eaba1aa18b483988bfcd50df440", size = 19661, upload-time = "2026-07-23T15:38:09.937Z" },
+]
+
+[[package]]
+name = "repl-nix-workspace"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "liboqs-python" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "liboqs-python", specifier = ">=0.16.0" }]
