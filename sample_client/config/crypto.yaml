@@ -1,0 +1,39 @@
+# AcmeCorp Banking API — Cryptographic configuration
+# Review date: 2022-06-01
+
+key_management:
+  jwt_signing:
+    algorithm: RSA
+    key_size: 2048         # RSA-2048: vulnerable to Shor's algorithm
+    rotation_days: 365
+
+  data_encryption:
+    algorithm: AES
+    key_size: 128          # AES-128: Grover-weakened to 64-bit effective security
+    mode: CBC              # CBC: unauthenticated, vulnerable to padding oracle attacks
+
+  transaction_signing:
+    algorithm: ECDSA
+    curve: secp256r1       # P-256: vulnerable to Shor's algorithm
+    hash: SHA256
+
+  legacy_fields:
+    algorithm: 3DES
+    mode: ECB              # ECB: deterministic, no semantic security
+
+certificate_authority:
+  root_ca_algorithm: RSA
+  root_ca_key_size: 4096
+  intermediate_key_size: 2048
+  leaf_key_size: 2048
+  signature_hash: SHA256
+
+tls:
+  min_version: TLSv1.2
+  preferred_cipher: ECDHE-RSA-AES128-GCM-SHA256
+  session_ticket_rotation_days: 7
+
+compliance:
+  pci_dss: true
+  fips_140_2: partial
+  cnsa_2_0: not_started    # Target: 2028

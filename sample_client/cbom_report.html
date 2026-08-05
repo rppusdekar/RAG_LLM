@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CBOM Scan Report — /home/runner/workspace/sample_client</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 2rem; color: #1e293b; }
+  h1   { color: #0f172a; }
+  .scorecard { display:flex; gap:2rem; margin:1rem 0 2rem; flex-wrap:wrap; }
+  .card { background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px;
+           padding:1rem 1.5rem; min-width:140px; text-align:center; }
+  .card .num { font-size:2rem; font-weight:bold; }
+  .vuln  { color:#dc2626; }
+  .weak  { color:#d97706; }
+  .safe  { color:#16a34a; }
+  .pqc   { color:#2563eb; }
+  table  { border-collapse:collapse; width:100%; font-size:0.9rem; }
+  th     { background:#1e293b; color:#fff; padding:0.5rem; text-align:left; }
+  td     { padding:0.4rem 0.6rem; border-bottom:1px solid #e2e8f0; }
+  tr:hover { background:#f1f5f9; }
+  code   { background:#f1f5f9; padding:0.1rem 0.3rem; border-radius:3px;
+            font-size:0.82rem; }
+  .grade { font-size:1.2rem; font-weight:bold; margin-top:0.25rem; }
+</style>
+</head>
+<body>
+<h1>CBOM Scan Report</h1>
+<p><strong>Target:</strong> /home/runner/workspace/sample_client &nbsp;|&nbsp;
+   <strong>Scanned:</strong> 8 files &nbsp;|&nbsp;
+   <strong>Generated:</strong> 2026-08-05 12:33 UTC</p>
+
+<div class="scorecard">
+  <div class="card"><div class="num vuln">46</div>Vulnerable</div>
+  <div class="card"><div class="num weak">20</div>Weakened</div>
+  <div class="card"><div class="num safe">1</div>Safe / PQC</div>
+  <div class="card">
+    <div class="num">0</div>
+    <div class="grade">F — Critically Vulnerable</div>
+  </div>
+</div>
+
+<h2>Findings</h2>
+<table>
+<thead>
+  <tr><th>Risk</th><th>Algorithm</th><th>File</th><th>Line</th>
+      <th>Key bits</th><th>Evidence</th><th>PQC Replacement</th></tr>
+</thead>
+<tbody>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>PyJWT (JWT library)</td><td>auth.py</td><td>6</td><td></td><td><code>import jwt</code></td><td style='font-size:0.85em'>Post-Quantum Token (PQT) with ML-DSA-65 signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>auth.py</td><td>3</td><td>2048</td><td><code>JWT issuance and verification using RSA-2048 + SHA-256</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>auth.py</td><td>8</td><td></td><td><code>from cryptography.hazmat.primitives.asymmetric import rsa, padding</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>auth.py</td><td>15</td><td></td><td><code>_private_key = rsa.generate_private_key(</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>auth.py</td><td>22</td><td></td><td><code>JWT_ALGORITHM  = "RS256"          # RSA + SHA-256</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>auth.py</td><td>30</td><td>2048</td><td><code>"""Issue a JWT signed with RSA-2048 / SHA-256."""</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>auth.py</td><td>46</td><td></td><td><code>"""Verify an RSA-signed JWT and return the payload."""</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>MD5</td><td>auth.py</td><td>55</td><td>128</td><td><code>"""Hash a password for storage. Uses MD5 (legacy — do not use in production)."""</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>MD5</td><td>auth.py</td><td>57</td><td>128</td><td><code>return hashlib.md5(password.encode()).hexdigest()</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>MD5</td><td>auth.py</td><td>61</td><td>128</td><td><code>return hashlib.md5(password.encode()).hexdigest() == stored_hash</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>SHA</td><td>auth.py</td><td>65</td><td>1</td><td><code>"""Generate a session ID. Uses SHA-1 (legacy)."""</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>SHA</td><td>auth.py</td><td>67</td><td>1</td><td><code>return hashlib.sha1(raw.encode()).hexdigest()</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>3DES</td><td>encryption.py</td><td>34</td><td>112</td><td><code>"""Encrypt a legacy DB field with 3DES. Used only for backward compat."""</code></td><td style='font-size:0.85em'>AES-256-GCM</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>3DES</td><td>encryption.py</td><td>35</td><td>112</td><td><code>cipher = DES3.new(DES3_KEY, DES3.MODE_ECB)</code></td><td style='font-size:0.85em'>AES-256-GCM</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>3DES</td><td>encryption.py</td><td>36</td><td>112</td><td><code>return cipher.encrypt(pad(data, DES3.block_size))</code></td><td style='font-size:0.85em'>AES-256-GCM</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>3DES</td><td>encryption.py</td><td>40</td><td>112</td><td><code>cipher = DES3.new(DES3_KEY, DES3.MODE_ECB)</code></td><td style='font-size:0.85em'>AES-256-GCM</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>3DES</td><td>encryption.py</td><td>41</td><td>112</td><td><code>return unpad(cipher.decrypt(data), DES3.block_size)</code></td><td style='font-size:0.85em'>AES-256-GCM</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RC4</td><td>encryption.py</td><td>47</td><td></td><td><code>RC4-encrypt a compliance report for transmission.</code></td><td style='font-size:0.85em'>AES-256-GCM or ChaCha20-Poly1305</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>payments.py</td><td>3</td><td></td><td><code>Uses ECDSA (P-256) to sign transaction records for non-repudiation.</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>payments.py</td><td>7</td><td></td><td><code>from cryptography.hazmat.primitives.asymmetric import ec</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>payments.py</td><td>16</td><td></td><td><code>_signing_key = ec.generate_private_key(ec.SECP256R1(), default_backend())</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>payments.py</td><td>21</td><td></td><td><code>"""Sign a transaction dict with ECDSA P-256 / SHA-256."""</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>payments.py</td><td>23</td><td></td><td><code>sig = _signing_key.sign(canonical, ec.ECDSA(hashes.SHA256()))</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>payments.py</td><td>33</td><td></td><td><code>_verify_key.verify(sig, canonical, ec.ECDSA(hashes.SHA256()))</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>payments.py</td><td>40</td><td></td><td><code>"""Derive a payment token using ECDH key agreement."""</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>payments.py</td><td>42</td><td></td><td><code>ephemeral_key = ec.generate_private_key(ec.SECP256R1(), default_backend())</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>payments.py</td><td>43</td><td></td><td><code>shared_key    = ephemeral_key.exchange(ec.ECDH(), _verify_key)</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>Cert: RSA-2048</td><td>acmecorp.crt</td><td>0</td><td>2048</td><td><code>CN=api.acmecorp-banking.com | expires 2029-11-17</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>Cert: RSA-1024</td><td>internal.crt</td><td>0</td><td>1024</td><td><code>CN=internal.acmecorp-banking.com | expires 2036-08-02</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>crypto.yaml</td><td>6</td><td></td><td><code>algorithm: RSA</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>crypto.yaml</td><td>7</td><td>2048</td><td><code>key_size: 2048         # RSA-2048: vulnerable to Shor's algorithm</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>ECC</td><td>crypto.yaml</td><td>16</td><td></td><td><code>algorithm: ECDSA</code></td><td style='font-size:0.85em'>ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>3DES</td><td>crypto.yaml</td><td>21</td><td>112</td><td><code>algorithm: 3DES</code></td><td style='font-size:0.85em'>AES-256-GCM</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>crypto.yaml</td><td>25</td><td></td><td><code>root_ca_algorithm: RSA</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>Deprecated TLS/SSL</td><td>crypto.yaml</td><td>32</td><td></td><td><code>min_version: TLSv1.2</code></td><td style='font-size:0.85em'>TLS 1.3 with ML-KEM hybrid cipher suite</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>crypto.yaml</td><td>33</td><td></td><td><code>preferred_cipher: ECDHE-RSA-AES128-GCM-SHA256</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>Deprecated TLS/SSL</td><td>tls.conf</td><td>14</td><td></td><td><code>ssl_protocols TLSv1.2;</code></td><td style='font-size:0.85em'>TLS 1.3 with ML-KEM hybrid cipher suite</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>RSA</td><td>tls.conf</td><td>17</td><td></td><td><code>ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES</code></td><td style='font-size:0.85em'>ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>Deprecated TLS/SSL</td><td>tls.conf</td><td>35</td><td></td><td><code>ssl_protocols TLSv1.1 TLSv1.2;</code></td><td style='font-size:0.85em'>TLS 1.3 with ML-KEM hybrid cipher suite</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>MD5</td><td>legacy_hash.py</td><td>13</td><td>128</td><td><code>return hashlib.md5(data).hexdigest()</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>SHA</td><td>legacy_hash.py</td><td>17</td><td>1</td><td><code>"""SHA-1 checksum. Deprecated (NIST SP 800-131A Rev 2: disallowed after 2030).""</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>SHA</td><td>legacy_hash.py</td><td>18</td><td>1</td><td><code>return hashlib.sha1(data).hexdigest()</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>SHA</td><td>legacy_hash.py</td><td>22</td><td>1</td><td><code>"""HMAC-SHA1 message authentication. Grover-weakened — use HMAC-SHA256 minimum."</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>SHA</td><td>legacy_hash.py</td><td>23</td><td>1</td><td><code>return hmac.new(key, message, hashlib.sha1).digest()</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>MD5</td><td>legacy_hash.py</td><td>27</td><td>128</td><td><code>"""HMAC-MD5. Classically broken — remove immediately."""</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512</td></tr>
+<tr><td style='color:#dc2626;font-weight:bold'>VULNERABLE 🔴</td><td>MD5</td><td>legacy_hash.py</td><td>28</td><td>128</td><td><code>return hmac.new(key, message, hashlib.md5).digest()</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>hashlib</td><td>auth.py</td><td>7</td><td></td><td><code>import hashlib</code></td><td style='font-size:0.85em'>Use SHA-384/SHA-512 variants for quantum margin</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>encryption.py</td><td>3</td><td>128</td><td><code>AES-128-CBC for PII at rest, 3DES for legacy DB fields, RC4 in one old report ex</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>encryption.py</td><td>8</td><td></td><td><code>from Crypto.Cipher import AES, DES3</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>encryption.py</td><td>13</td><td></td><td><code>AES_KEY = os.urandom(16)    # 16 bytes = 128 bits (should be 32 bytes = 256 bits</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>encryption.py</td><td>14</td><td></td><td><code>AES_MODE = AES.MODE_CBC     # CBC mode — no authentication; vulnerable to paddin</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>encryption.py</td><td>18</td><td>128</td><td><code>"""Encrypt PII with AES-128-CBC. Returns (ciphertext, iv)."""</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>encryption.py</td><td>20</td><td></td><td><code>cipher = AES.new(AES_KEY, AES.MODE_CBC, iv)</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>encryption.py</td><td>21</td><td></td><td><code>return cipher.encrypt(pad(data, AES.block_size)), iv</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>encryption.py</td><td>25</td><td></td><td><code>cipher = AES.new(AES_KEY, AES.MODE_CBC, iv)</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>encryption.py</td><td>26</td><td></td><td><code>return unpad(cipher.decrypt(ciphertext), AES.block_size)</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>crypto.yaml</td><td>11</td><td></td><td><code>algorithm: AES</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>crypto.yaml</td><td>12</td><td>128</td><td><code>key_size: 128          # AES-128: Grover-weakened to 64-bit effective security</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>SHA</td><td>crypto.yaml</td><td>18</td><td>256</td><td><code>hash: SHA256</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>SHA</td><td>crypto.yaml</td><td>29</td><td>256</td><td><code>signature_hash: SHA256</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>AES</td><td>tls.conf</td><td>36</td><td>128</td><td><code>ssl_ciphers 'AES128-SHA:DES-CBC3-SHA:RC4-SHA';</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>hashlib</td><td>legacy_hash.py</td><td>7</td><td></td><td><code>import hashlib</code></td><td style='font-size:0.85em'>Use SHA-384/SHA-512 variants for quantum margin</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>HMAC</td><td>legacy_hash.py</td><td>8</td><td></td><td><code>import hmac</code></td><td style='font-size:0.85em'>HMAC-SHA384 or HMAC-SHA512</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>SHA</td><td>legacy_hash.py</td><td>12</td><td>256</td><td><code>"""MD5 checksum for file integrity. Classically broken — use SHA-256 minimum."""</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>SHA</td><td>legacy_hash.py</td><td>32</td><td>256</td><td><code>"""Double SHA-256 (Bitcoin-style). Grover-weakened at 128-bit effective security</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#d97706;font-weight:bold'>WEAKENED 🟡</td><td>SHA</td><td>legacy_hash.py</td><td>33</td><td>256</td><td><code>return hashlib.sha256(hashlib.sha256(data).digest()).digest()</code></td><td style='font-size:0.85em'>SHA-384 or SHA-512 (sufficient Grover margin)</td></tr>
+<tr><td style='color:#16a34a;font-weight:bold'>SAFE 🟢</td><td>AES</td><td>encryption.py</td><td>48</td><td>256</td><td><code>RC4 is broken — replace with AES-256-GCM immediately.</code></td><td style='font-size:0.85em'>AES-256-GCM is quantum-safe at NIST Level 1 (keep key ≥256 bits)</td></tr>
+
+</tbody>
+</table>
+</body>
+</html>

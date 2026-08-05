@@ -139,6 +139,51 @@ cbom_scanner/
 
 ---
 
+## TLS endpoint scanning
+
+```bash
+# Scan a live TLS server — protocol, cipher suite, and certificate
+python -m cbom_scanner.cli --tls github.com
+
+# Internal / self-signed host
+python -m cbom_scanner.cli --tls internal.corp:8443 --no-verify
+
+# Combined: source code + live endpoint in one unified report
+python -m cbom_scanner.cli src/ --tls api.example.com --format html --output report.html
+```
+
+**What the TLS detector checks:**
+
+| Finding | Example | Risk |
+|---|---|---|
+| Protocol version | TLSv1.0, TLSv1.1, SSLv3 | 🔴 VULNERABLE |
+| Protocol version | TLSv1.2, TLSv1.3 | 🟡 WEAKENED |
+| Key exchange | ECDHE-RSA, DHE-RSA (all current suites) | 🔴 VULNERABLE |
+| Symmetric cipher | AES-128 | 🟡 WEAKENED |
+| Symmetric cipher | AES-256, ChaCha20 | 🟢 SAFE |
+| Certificate algorithm | RSA-2048, EC P-256 | 🔴 VULNERABLE |
+| SHA-1 cert signature | Cert signed with SHA-1 | 🔴 VULNERABLE |
+| RSA < 3072 bits | Below CNSA 2.0 minimum | 🔴 VULNERABLE |
+| Post-2030 cert expiry | Must use PQC before CNSA 2.0 deadline | 🔴 VULNERABLE |
+
+## Sample portfolio report
+
+`sample_client/` contains a fictional pre-migration banking API codebase
+(AcmeCorp) representing the state of most enterprise systems in 2024.
+It was scanned to produce a real portfolio artifact:
+
+- **`sample_client/cbom_report.html`** — stakeholder-ready HTML report (open in browser)
+- **`sample_client/cbom.json`** — CycloneDX 1.6 CBOM (67 components, score 0/100 F)
+
+To regenerate:
+```bash
+PYTHONPATH=. python3 -m cbom_scanner.cli sample_client \
+  --format html --output sample_client/cbom_report.html
+
+PYTHONPATH=. python3 -m cbom_scanner.cli sample_client \
+  --format cyclonedx --output sample_client/cbom.json
+```
+
 ## CI integration
 
 ```yaml
