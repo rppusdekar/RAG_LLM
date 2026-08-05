@@ -1,6 +1,6 @@
-# [Project name]
+# PQC Learning Lab
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A hands-on post-quantum cryptography learning project: Phase 3 demos (ML-KEM, ML-DSA, SLH-DSA via liboqs), Phase 4 FastAPI PQC service, and a CBOM Scanner tool that inventories cryptographic assets in source code and classifies quantum risk.
 
 ## Run & Operate
 

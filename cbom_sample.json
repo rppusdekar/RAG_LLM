@@ -1,0 +1,3165 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.6",
+  "version": 1,
+  "serialNumber": "urn:uuid:5bfa41d0-6d7b-45d2-bf02-efcd5bc2b072",
+  "metadata": {
+    "timestamp": "2026-08-05T10:43:42.810118Z",
+    "tools": [
+      {
+        "vendor": "cbom-scanner",
+        "name": "cbom-scanner",
+        "version": "0.1.0"
+      }
+    ],
+    "component": {
+      "type": "application",
+      "name": "pqc_phase3",
+      "version": "unknown"
+    },
+    "properties": [
+      {
+        "name": "cbom:filesScanned",
+        "value": "5"
+      },
+      {
+        "name": "cbom:scanDurationSec",
+        "value": "0.17"
+      },
+      {
+        "name": "cbom:riskScore",
+        "value": "42"
+      },
+      {
+        "name": "cbom:riskGrade",
+        "value": "D \u2014 High Risk"
+      }
+    ]
+  },
+  "components": [
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-41829826",
+      "name": "liboqs (Open Quantum Safe)",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 33,
+            "offset": 0,
+            "symbol": "import oqs"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already using PQC library"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-86595b45",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 2,
+            "offset": 0,
+            "symbol": "Phase 3 \u2014 FIPS 203: ML-KEM (Module Lattice Key Encapsulation Mechanism)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-046c8f0d",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 4,
+            "offset": 0,
+            "symbol": "Previously known as CRYSTALS-Kyber."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-ce15a983",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 8,
+            "offset": 0,
+            "symbol": "ML-KEM lets two parties (Alice and Bob) agree on a shared secret key over"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-2c563f7c",
+      "name": "RSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 9,
+            "offset": 0,
+            "symbol": "an insecure channel WITHOUT ever sending that key \u2014 even if an adversary"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-d0212167",
+      "name": "AES",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 24,
+            "offset": 0,
+            "symbol": "ML-KEM-512   \u2192 NIST security level 1 (\u2248 AES-128)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "128"
+        },
+        "oid": "2.16.840.1.101.3.4.1"
+      },
+      "_quantumRisk": {
+        "level": "weakened",
+        "pqcReplacement": "AES-256-GCM is quantum-safe at NIST Level 1 (keep key \u2265256 bits)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-a610f5ae",
+      "name": "AES",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 25,
+            "offset": 0,
+            "symbol": "ML-KEM-768   \u2192 NIST security level 3 (\u2248 AES-192)   \u2190 recommended default"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "192"
+        },
+        "oid": "2.16.840.1.101.3.4.1"
+      },
+      "_quantumRisk": {
+        "level": "weakened",
+        "pqcReplacement": "AES-256-GCM is quantum-safe at NIST Level 1 (keep key \u2265256 bits)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-47205c12",
+      "name": "AES",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 26,
+            "offset": 0,
+            "symbol": "ML-KEM-1024  \u2192 NIST security level 5 (\u2248 AES-256)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "256"
+        },
+        "oid": "2.16.840.1.101.3.4.1"
+      },
+      "_quantumRisk": {
+        "level": "safe",
+        "pqcReplacement": "AES-256-GCM is quantum-safe at NIST Level 1 (keep key \u2265256 bits)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-a637e899",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 132,
+            "offset": 0,
+            "symbol": "print(\" FIPS 203 \u2014 ML-KEM (Key Encapsulation Mechanism)\")"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-f19df7bf",
+      "name": "AES",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 137,
+            "offset": 0,
+            "symbol": "using AES-GCM \u2014 without any key ever crossing the wire."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "mode": "gcm"
+        },
+        "oid": "2.16.840.1.101.3.4.1"
+      },
+      "_quantumRisk": {
+        "level": "weakened",
+        "pqcReplacement": "AES-256-GCM is quantum-safe at NIST Level 1 (keep key \u2265256 bits)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-9b873b75",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 140,
+            "offset": 0,
+            "symbol": "variants = [\"ML-KEM-512\", \"ML-KEM-768\", \"ML-KEM-1024\"]"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "512"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-f4ecacaa",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 162,
+            "offset": 0,
+            "symbol": "\u2022 ML-KEM-768 is the recommended default for most API use cases."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "768"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-aaa2e74f",
+      "name": "RSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 165,
+            "offset": 0,
+            "symbol": "\u2022 ML-KEM is IND-CCA2 secure: even an adversary who can trigger decapsulation"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-d7b08684",
+      "name": "Diffie-Hellman",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/01_ml_kem.py",
+            "line": 167,
+            "offset": 0,
+            "symbol": "\u2022 Unlike Diffie-Hellman, ML-KEM security does NOT rely on discrete logs \u2014"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "key-agreement",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10046.2.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-KEM-768 (FIPS 203) or X25519+ML-KEM-768 hybrid"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-937828c9",
+      "name": "liboqs (Open Quantum Safe)",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 37,
+            "offset": 0,
+            "symbol": "import oqs"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already using PQC library"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-6b9de971",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 2,
+            "offset": 0,
+            "symbol": "Phase 3 \u2014 FIPS 204: ML-DSA (Module Lattice Digital Signature Algorithm)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-bf142848",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 4,
+            "offset": 0,
+            "symbol": "Previously known as CRYSTALS-Dilithium."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-8f22b4f4",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 8,
+            "offset": 0,
+            "symbol": "ML-DSA lets a signer prove that a message came from them and was not"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-3c033408",
+      "name": "AES",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 27,
+            "offset": 0,
+            "symbol": "ML-DSA-44  \u2192 NIST security level 2  (\u2248 AES-128)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "128"
+        },
+        "oid": "2.16.840.1.101.3.4.1"
+      },
+      "_quantumRisk": {
+        "level": "weakened",
+        "pqcReplacement": "AES-256-GCM is quantum-safe at NIST Level 1 (keep key \u2265256 bits)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-786b225f",
+      "name": "AES",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 28,
+            "offset": 0,
+            "symbol": "ML-DSA-65  \u2192 NIST security level 3  (\u2248 AES-192)   \u2190 recommended default"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "192"
+        },
+        "oid": "2.16.840.1.101.3.4.1"
+      },
+      "_quantumRisk": {
+        "level": "weakened",
+        "pqcReplacement": "AES-256-GCM is quantum-safe at NIST Level 1 (keep key \u2265256 bits)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-8aaabf1c",
+      "name": "AES",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 29,
+            "offset": 0,
+            "symbol": "ML-DSA-87  \u2192 NIST security level 5  (\u2248 AES-256)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "ae",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "256"
+        },
+        "oid": "2.16.840.1.101.3.4.1"
+      },
+      "_quantumRisk": {
+        "level": "safe",
+        "pqcReplacement": "AES-256-GCM is quantum-safe at NIST Level 1 (keep key \u2265256 bits)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-b71e4a22",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 139,
+            "offset": 0,
+            "symbol": "Practical example: sign an API response payload with ML-DSA-65"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "65"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-155962d1",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 144,
+            "offset": 0,
+            "symbol": "alg = \"ML-DSA-65\""
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "65"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-650ac269",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 180,
+            "offset": 0,
+            "symbol": "hr(\"ML-DSA vs CLASSICAL SIGNATURES\")"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-b952a260",
+      "name": "RSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 184,
+            "offset": 0,
+            "symbol": "RSA-2048        integer      256 B     1192 B       256 B        \u2717  No"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "2048"
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-64be5812",
+      "name": "ECC",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 185,
+            "offset": 0,
+            "symbol": "ECDSA P-256     elliptic      64 B       32 B        64 B        \u2717  No"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10045.2.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204) for signatures; ML-KEM-768 (FIPS 203) for key exchange"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-452288ae",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 187,
+            "offset": 0,
+            "symbol": "ML-DSA-44       lattice     1312 B     2528 B      2420 B        \u2713  Yes"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "44"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-d710b540",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 188,
+            "offset": 0,
+            "symbol": "ML-DSA-65       lattice     1952 B     4000 B      3293 B        \u2713  Yes"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "65"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-4bedabe9",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 189,
+            "offset": 0,
+            "symbol": "ML-DSA-87       lattice     2592 B     4864 B      4595 B        \u2713  Yes"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "87"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-79d0a185",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 192,
+            "offset": 0,
+            "symbol": "\u2022 ML-DSA signatures are larger (2\u20134 KB vs 64\u2013256 bytes for classical)."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-d02a2ee1",
+      "name": "RSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 194,
+            "offset": 0,
+            "symbol": "\u2022 Speed is comparable to RSA-2048 and faster than many ECC operations."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "2048"
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-305aef03",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 203,
+            "offset": 0,
+            "symbol": "print(\" FIPS 204 \u2014 ML-DSA (Digital Signature Algorithm)\")"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-45bb0ef9",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 210,
+            "offset": 0,
+            "symbol": "variants = [\"ML-DSA-44\", \"ML-DSA-65\", \"ML-DSA-87\"]"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "44"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-35c6433f",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 235,
+            "offset": 0,
+            "symbol": "\u2022 ML-DSA-65 is the recommended default for APIs (NIST level 3)."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "65"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-252562de",
+      "name": "RSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 236,
+            "offset": 0,
+            "symbol": "\u2022 EUF-CMA security: an adversary cannot forge a valid signature even"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.113549.1.1.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-KEM-768 (FIPS 203) for key exchange; ML-DSA-65 (FIPS 204) for signatures"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-4c198afc",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/02_ml_dsa.py",
+            "line": 238,
+            "offset": 0,
+            "symbol": "\u2022 Key insight for API developers: ML-DSA replaces the signing step in"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-dd1da01f",
+      "name": "liboqs (Open Quantum Safe)",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 46,
+            "offset": 0,
+            "symbol": "import oqs"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already using PQC library"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-0347fe24",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 2,
+            "offset": 0,
+            "symbol": "Phase 3 \u2014 FIPS 205: SLH-DSA (Stateless Hash-Based Digital Signature Algorithm)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-c0d21eb7",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 4,
+            "offset": 0,
+            "symbol": "Previously known as SPHINCS+."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-7a7f803a",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 8,
+            "offset": 0,
+            "symbol": "SLH-DSA is a digital signature scheme like ML-DSA \u2014 but built entirely on"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-c18e93e9",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 10,
+            "offset": 0,
+            "symbol": "backup: even if lattice math is broken in the future, SLH-DSA security depends"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-4ee958ae",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 16,
+            "offset": 0,
+            "symbol": "NIST standardised BOTH ML-DSA and SLH-DSA on purpose:"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-aa9e06ca",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 17,
+            "offset": 0,
+            "symbol": "\u2022 ML-DSA  \u2192 fast, compact signatures. Use it for high-throughput APIs."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-89fd4380",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 18,
+            "offset": 0,
+            "symbol": "\u2022 SLH-DSA \u2192 conservative baseline. Use it when you want proof that security"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-b9ef574d",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 21,
+            "offset": 0,
+            "symbol": "The trade-off: SLH-DSA has much larger signatures (8\u201350 KB) and slower"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-5d4b3d1c",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 26,
+            "offset": 0,
+            "symbol": "SPHINCS+-<hash>-<security>-<variant>"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-7f2521d1",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 35,
+            "offset": 0,
+            "symbol": "SPHINCS+-SHA2-128f-simple  \u2192 SHA-2, 128-bit security, fast variant"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-4836c9ef",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 36,
+            "offset": 0,
+            "symbol": "SPHINCS+-SHA2-256s-simple  \u2192 SHA-2, 256-bit security, small variant"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-3f1bd938",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 38,
+            "offset": 0,
+            "symbol": "All variants here correspond to FIPS 205 SLH-DSA. liboqs exposes them"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-9d5c38c0",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 39,
+            "offset": 0,
+            "symbol": "under the SPHINCS+ name (the pre-standardisation name)."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-999993dc",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 69,
+            "offset": 0,
+            "symbol": "\"SPHINCS+-SHA2-128f-simple\",   # 128-bit, fast  \u2192 smallest signatures in group"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-aa9e2844",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 70,
+            "offset": 0,
+            "symbol": "\"SPHINCS+-SHA2-128s-simple\",   # 128-bit, small \u2192 slowest signing, smallest sig"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-dc30ee7e",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 71,
+            "offset": 0,
+            "symbol": "\"SPHINCS+-SHA2-256f-simple\",   # 256-bit, fast  \u2192 highest security, faster"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-a736a3ea",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 72,
+            "offset": 0,
+            "symbol": "\"SPHINCS+-SHA2-256s-simple\",   # 256-bit, small \u2192 highest security, smallest sig"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-5344a973",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 149,
+            "offset": 0,
+            "symbol": "ML-DSA is fast but is a newer assumption. SLH-DSA is the conservative"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-07616348",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 153,
+            "offset": 0,
+            "symbol": "alg = \"SPHINCS+-SHA2-256s-simple\"   # highest security, smallest sig in group"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-07ddd196",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 180,
+            "offset": 0,
+            "symbol": "clients) is fast for all SLH-DSA variants \u2014 the right trade-off here."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-58afa31a",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 204,
+            "offset": 0,
+            "symbol": "\u2022 High-frequency signatures (e.g., every API response) \u2192 use ML-DSA"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-fa049f62",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 206,
+            "offset": 0,
+            "symbol": "that must stay valid for 10\u201320 years \u2192 SLH-DSA-256s is the gold standard"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-ff22ddea",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 207,
+            "offset": 0,
+            "symbol": "\u2022 SLH-DSA-128f is a reasonable middle ground if you need PQC conservative"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-ed77acfa",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 216,
+            "offset": 0,
+            "symbol": "print(\" FIPS 205 \u2014 SLH-DSA (Hash-Based Signature)\")"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-de04d43c",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 249,
+            "offset": 0,
+            "symbol": "\u2022 SLH-DSA security rests ONLY on hash-function collision resistance"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-12bc3611",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 250,
+            "offset": 0,
+            "symbol": "\u2014 no new math, no new assumptions. This is its main advantage over ML-DSA."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-3addbdf3",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 253,
+            "offset": 0,
+            "symbol": "\u2022 For high-throughput APIs prefer ML-DSA; use SLH-DSA for long-lived,"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-b532b40d",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/03_slh_dsa.py",
+            "line": 255,
+            "offset": 0,
+            "symbol": "\u2022 NIST recommends deploying BOTH: ML-DSA for speed, SLH-DSA as a fallback."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-ee79b506",
+      "name": "liboqs (Open Quantum Safe)",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 12,
+            "offset": 0,
+            "symbol": "import oqs"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "other",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already using PQC library"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-b889c6e4",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 82,
+            "offset": 0,
+            "symbol": "print(\"\\nBenchmarking \u2026 (this takes a few seconds for SLH-DSA)\\n\")"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-0d75db08",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 86,
+            "offset": 0,
+            "symbol": "bench_kem(\"ML-KEM-768\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "768"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-d2e3d8e2",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 88,
+            "offset": 0,
+            "symbol": "bench_kem(\"ML-KEM-512\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "512"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-147a6b5c",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 89,
+            "offset": 0,
+            "symbol": "bench_kem(\"ML-KEM-1024\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "1024"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-4a26a231",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 91,
+            "offset": 0,
+            "symbol": "bench_sig(\"ML-DSA-65\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "65"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-7a3a09d8",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 92,
+            "offset": 0,
+            "symbol": "bench_sig(\"ML-DSA-44\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "44"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-4d4fb68a",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 93,
+            "offset": 0,
+            "symbol": "bench_sig(\"ML-DSA-87\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "87"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-8db4c0e7",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 95,
+            "offset": 0,
+            "symbol": "bench_sig(\"SPHINCS+-SHA2-128f-simple\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-de02b9f9",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 96,
+            "offset": 0,
+            "symbol": "bench_sig(\"SPHINCS+-SHA2-256s-simple\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-33f037c8",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 100,
+            "offset": 0,
+            "symbol": "hr(\"ML-KEM (FIPS 203) \u2014 Key Encapsulation\")"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-d48bff98",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 115,
+            "offset": 0,
+            "symbol": "hr(\"ML-DSA (FIPS 204) + SLH-DSA (FIPS 205) \u2014 Signatures\")"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-31c8f8e2",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 134,
+            "offset": 0,
+            "symbol": "TLS key exchange / session key establishment    ML-KEM-768"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "768"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-2e62b58e",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 135,
+            "offset": 0,
+            "symbol": "API request/response signing (JWT, webhooks)    ML-DSA-65"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "65"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-02207345",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 136,
+            "offset": 0,
+            "symbol": "Long-lived certs (CA, code signing, audit logs) SLH-DSA-256s"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-34eda71c",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 137,
+            "offset": 0,
+            "symbol": "Highest throughput, relaxed security level      ML-KEM-512 / ML-DSA-44"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "512"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-535c96a1",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 138,
+            "offset": 0,
+            "symbol": "Regulatory / government requirement (level 5)   ML-KEM-1024 / ML-DSA-87"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "1024"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-6846d136",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 143,
+            "offset": 0,
+            "symbol": "Key exchange  \u2192  X25519  +  ML-KEM-768   (XOR the shared secrets)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "768"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-166cd588",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 144,
+            "offset": 0,
+            "symbol": "Signatures    \u2192  Ed25519  +  ML-DSA-65   (require BOTH to verify)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "65"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-faef5943",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 147,
+            "offset": 0,
+            "symbol": "protects you. If a classical break happens, ML-KEM/ML-DSA protects you."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-40542e87",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 152,
+            "offset": 0,
+            "symbol": "ML-KEM-768  public key :  1184 B  \u2192 fine in TLS handshake, X.509 cert"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "768"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-c95d7ab0",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 153,
+            "offset": 0,
+            "symbol": "ML-DSA-65   signature  :  3293 B  \u2192 exceeds typical JWT header budget;"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ],
+          "parameterSetIdentifier": "65"
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-c1b561be",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 155,
+            "offset": 0,
+            "symbol": "SLH-DSA-256s signature :  29792 B \u2192 store out-of-band (separate endpoint)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "library",
+      "bom-ref": "cf-df1818bf",
+      "name": "liboqs",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 161,
+            "offset": 0,
+            "symbol": "NIST Competition Name   \u2192  FIPS Standard  \u2192  liboqs name"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "library"
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already using Open Quantum Safe library"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-472f2393",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 163,
+            "offset": 0,
+            "symbol": "CRYSTALS-Kyber          \u2192  FIPS 203        \u2192  ML-KEM-{512,768,1024}"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-681b5e3c",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 164,
+            "offset": 0,
+            "symbol": "(also Kyber{512,768,1024})"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-05dc4730",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 165,
+            "offset": 0,
+            "symbol": "CRYSTALS-Dilithium      \u2192  FIPS 204        \u2192  ML-DSA-{44,65,87}"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-7124c489",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 166,
+            "offset": 0,
+            "symbol": "(also Dilithium{2,3,5})"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-c408cbcf",
+      "name": "SLH-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 167,
+            "offset": 0,
+            "symbol": "SPHINCS+                \u2192  FIPS 205        \u2192  SPHINCS+-SHA2/SHAKE-*"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-891b0e9d",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 168,
+            "offset": 0,
+            "symbol": "(no ML-DSA rename yet)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-f1e5129f",
+      "name": "Falcon",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 170,
+            "offset": 0,
+            "symbol": "FALCON                  \u2192  FIPS 206 (draft)\u2192  Falcon-{512,1024} (small sigs)"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already PQC (NIST Round 4 alternate); prefer ML-DSA for FIPS compliance"
+      }
+    },
+    {
+      "type": "library",
+      "bom-ref": "cf-7289f566",
+      "name": "liboqs",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 172,
+            "offset": 0,
+            "symbol": "Note: liboqs 0.13 (installed here) keeps both old and new names."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "library"
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already using Open Quantum Safe library"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-18a1e345",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 173,
+            "offset": 0,
+            "symbol": "Always use the ML-KEM-* / ML-DSA-* names in new code \u2014 the Kyber/"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-82c0b045",
+      "name": "ML-DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/04_compare_all.py",
+            "line": 174,
+            "offset": 0,
+            "symbol": "Dilithium aliases exist for backward compatibility only."
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-93f26f21",
+      "name": "ML-KEM",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/run_all.py",
+            "line": 12,
+            "offset": 0,
+            "symbol": "(\"01_ml_kem\",      \"ML-KEM  (FIPS 203) \u2014 Key Encapsulation\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "pke",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        }
+      },
+      "_quantumRisk": {
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-b1ed020d",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/run_all.py",
+            "line": 13,
+            "offset": 0,
+            "symbol": "(\"02_ml_dsa\",      \"ML-DSA  (FIPS 204) \u2014 Digital Signatures\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    },
+    {
+      "type": "algorithm",
+      "bom-ref": "cf-611b0202",
+      "name": "DSA",
+      "evidence": {
+        "occurrences": [
+          {
+            "location": "/home/runner/workspace/pqc_phase3/run_all.py",
+            "line": 14,
+            "offset": 0,
+            "symbol": "(\"03_slh_dsa\",     \"SLH-DSA (FIPS 205) \u2014 Hash-Based Signatures\"),"
+          }
+        ]
+      },
+      "cryptoProperties": {
+        "assetType": "algorithm",
+        "algorithmProperties": {
+          "primitive": "signature",
+          "executionEnvironment": "software",
+          "implementationPlatform": "any",
+          "certificationLevel": [
+            "none"
+          ]
+        },
+        "oid": "1.2.840.10040.4.1"
+      },
+      "_quantumRisk": {
+        "level": "vulnerable",
+        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+      }
+    }
+  ]
+}
