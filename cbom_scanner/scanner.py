@@ -9,7 +9,7 @@ from __future__ import annotations
 import time
 from pathlib import Path
 from .models import ScanResult
-from .detectors import GenericDetector, PythonDetector
+from .detectors import GenericDetector, PythonDetector, CertDetector, scan_tls_endpoint
 from .analyzer import refine, deduplicate
 
 # Directories to always skip
@@ -27,8 +27,33 @@ _SKIP_PATTERNS = {"*.min.js", "*.map", "*.lock", "pnpm-lock.yaml", "uv.lock"}
 
 _DETECTORS = [
     PythonDetector(),   # AST-based, higher precision for Python
+    CertDetector(),     # X.509 certificate files (.pem, .crt, .cer, .der)
     GenericDetector(),  # Regex-based, broad language coverage
 ]
+
+
+def scan_tls(host: str, port: int = 443, verify: bool = False) -> ScanResult:
+    """
+    Scan a live TLS endpoint and return a ScanResult.
+
+    Parameters
+    ----------
+    host    Hostname or IP to connect to.
+    port    TCP port (default 443).
+    verify  Whether to verify the server certificate chain.
+    """
+    import time
+    result = ScanResult(target_path=f"{host}:{port}")
+    t0 = time.monotonic()
+
+    findings = scan_tls_endpoint(host, port, verify=verify)
+    findings = refine(findings)
+    findings = deduplicate(findings)
+
+    result.findings       = findings
+    result.files_scanned  = 1   # counts as one "endpoint" scanned
+    result.scan_duration_s = time.monotonic() - t0
+    return result
 
 
 def scan(target: str | Path, max_file_size_kb: int = 500) -> ScanResult:
