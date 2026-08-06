@@ -68,7 +68,7 @@ PATTERNS: list[dict] = [
         "oid": "1.2.840.10046.2.1",
     },
     {
-        "regex": re.compile(r"\bDSA\b(?!\s*-\s*(?:44|65|87))", re.IGNORECASE),
+        "regex": re.compile(r"(?<!ML-)(?<!SLH-)\bDSA\b(?!\s*-\s*(?:44|65|87))", re.IGNORECASE),
         "name": "DSA",
         "asset_type": AssetType.ALGORITHM,
         "primitive": Primitive.SIGNATURE,

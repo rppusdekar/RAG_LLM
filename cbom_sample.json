@@ -2,9 +2,9 @@
   "bomFormat": "CycloneDX",
   "specVersion": "1.6",
   "version": 1,
-  "serialNumber": "urn:uuid:5bfa41d0-6d7b-45d2-bf02-efcd5bc2b072",
+  "serialNumber": "urn:uuid:0ca45473-83a8-43d6-b61e-bfd487140d1d",
   "metadata": {
-    "timestamp": "2026-08-05T10:43:42.810118Z",
+    "timestamp": "2026-08-06T18:29:36.628012Z",
     "tools": [
       {
         "vendor": "cbom-scanner",
@@ -24,22 +24,22 @@
       },
       {
         "name": "cbom:scanDurationSec",
-        "value": "0.17"
+        "value": "0.03"
       },
       {
         "name": "cbom:riskScore",
-        "value": "42"
+        "value": "86"
       },
       {
         "name": "cbom:riskGrade",
-        "value": "D \u2014 High Risk"
+        "value": "B \u2014 Mostly Safe"
       }
     ]
   },
   "components": [
     {
       "type": "algorithm",
-      "bom-ref": "cf-41829826",
+      "bom-ref": "cf-37cd50e7",
       "name": "liboqs (Open Quantum Safe)",
       "evidence": {
         "occurrences": [
@@ -69,7 +69,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-86595b45",
+      "bom-ref": "cf-9daeb2c6",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -99,7 +99,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-046c8f0d",
+      "bom-ref": "cf-a543e5a0",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -129,7 +129,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-ce15a983",
+      "bom-ref": "cf-3a6513a8",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -159,7 +159,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-2c563f7c",
+      "bom-ref": "cf-5635edee",
       "name": "RSA",
       "evidence": {
         "occurrences": [
@@ -190,7 +190,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-d0212167",
+      "bom-ref": "cf-dd5d73ed",
       "name": "AES",
       "evidence": {
         "occurrences": [
@@ -222,7 +222,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-a610f5ae",
+      "bom-ref": "cf-6fbf75f8",
       "name": "AES",
       "evidence": {
         "occurrences": [
@@ -254,7 +254,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-47205c12",
+      "bom-ref": "cf-9fc43a56",
       "name": "AES",
       "evidence": {
         "occurrences": [
@@ -286,7 +286,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-a637e899",
+      "bom-ref": "cf-ea27f5a2",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -316,7 +316,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-f19df7bf",
+      "bom-ref": "cf-cdcbebc8",
       "name": "AES",
       "evidence": {
         "occurrences": [
@@ -348,7 +348,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-9b873b75",
+      "bom-ref": "cf-46b4fdec",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -379,7 +379,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-f4ecacaa",
+      "bom-ref": "cf-5529018c",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -410,7 +410,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-aaa2e74f",
+      "bom-ref": "cf-9a6f1f67",
       "name": "RSA",
       "evidence": {
         "occurrences": [
@@ -441,7 +441,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-d7b08684",
+      "bom-ref": "cf-998cf5ee",
       "name": "Diffie-Hellman",
       "evidence": {
         "occurrences": [
@@ -472,7 +472,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-937828c9",
+      "bom-ref": "cf-c851401e",
       "name": "liboqs (Open Quantum Safe)",
       "evidence": {
         "occurrences": [
@@ -502,8 +502,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-6b9de971",
-      "name": "DSA",
+      "bom-ref": "cf-f25693aa",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -523,17 +523,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-bf142848",
+      "bom-ref": "cf-b259bef8",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -563,8 +562,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-8f22b4f4",
-      "name": "DSA",
+      "bom-ref": "cf-c8bb7e3c",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -584,17 +583,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-3c033408",
+      "bom-ref": "cf-6b2485fa",
       "name": "AES",
       "evidence": {
         "occurrences": [
@@ -626,7 +624,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-786b225f",
+      "bom-ref": "cf-68630ce5",
       "name": "AES",
       "evidence": {
         "occurrences": [
@@ -658,7 +656,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-8aaabf1c",
+      "bom-ref": "cf-13d564f7",
       "name": "AES",
       "evidence": {
         "occurrences": [
@@ -690,7 +688,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-b71e4a22",
+      "bom-ref": "cf-ffbe801d",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -721,7 +719,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-155962d1",
+      "bom-ref": "cf-829c8881",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -752,8 +750,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-650ac269",
-      "name": "DSA",
+      "bom-ref": "cf-74afe1c1",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -773,17 +771,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-b952a260",
+      "bom-ref": "cf-52f6a421",
       "name": "RSA",
       "evidence": {
         "occurrences": [
@@ -815,7 +812,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-64be5812",
+      "bom-ref": "cf-952f1766",
       "name": "ECC",
       "evidence": {
         "occurrences": [
@@ -846,7 +843,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-452288ae",
+      "bom-ref": "cf-43e98aa9",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -877,7 +874,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-d710b540",
+      "bom-ref": "cf-2f3f0018",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -908,7 +905,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-4bedabe9",
+      "bom-ref": "cf-6aedca87",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -939,8 +936,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-79d0a185",
-      "name": "DSA",
+      "bom-ref": "cf-f31abd27",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -960,17 +957,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-d02a2ee1",
+      "bom-ref": "cf-7ddf9c2a",
       "name": "RSA",
       "evidence": {
         "occurrences": [
@@ -1002,8 +998,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-305aef03",
-      "name": "DSA",
+      "bom-ref": "cf-d8292c10",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1023,17 +1019,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-45bb0ef9",
+      "bom-ref": "cf-3c80d80c",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -1064,7 +1059,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-35c6433f",
+      "bom-ref": "cf-0a8b7b16",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -1095,7 +1090,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-252562de",
+      "bom-ref": "cf-3542fdfd",
       "name": "RSA",
       "evidence": {
         "occurrences": [
@@ -1126,8 +1121,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-4c198afc",
-      "name": "DSA",
+      "bom-ref": "cf-61bb18c0",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1147,17 +1142,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-dd1da01f",
+      "bom-ref": "cf-68dcb1b6",
       "name": "liboqs (Open Quantum Safe)",
       "evidence": {
         "occurrences": [
@@ -1187,8 +1181,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-0347fe24",
-      "name": "DSA",
+      "bom-ref": "cf-b7fcfbd0",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1208,17 +1202,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-c0d21eb7",
+      "bom-ref": "cf-eaaf2319",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1248,8 +1241,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-7a7f803a",
-      "name": "DSA",
+      "bom-ref": "cf-350fecc6",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1269,18 +1262,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-c18e93e9",
-      "name": "DSA",
+      "bom-ref": "cf-3b43c668",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1300,18 +1292,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-4ee958ae",
-      "name": "DSA",
+      "bom-ref": "cf-1c4e08a1",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1331,18 +1322,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-aa9e06ca",
-      "name": "DSA",
+      "bom-ref": "cf-1f525b86",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1362,18 +1352,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-89fd4380",
-      "name": "DSA",
+      "bom-ref": "cf-18c2e7a0",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1393,18 +1382,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-b9ef574d",
-      "name": "DSA",
+      "bom-ref": "cf-5841b7b9",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1424,17 +1412,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-5d4b3d1c",
+      "bom-ref": "cf-1f850018",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1464,7 +1451,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-7f2521d1",
+      "bom-ref": "cf-5311c2c9",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1494,7 +1481,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-4836c9ef",
+      "bom-ref": "cf-1f865397",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1524,8 +1511,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-3f1bd938",
-      "name": "DSA",
+      "bom-ref": "cf-5107a60c",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1545,17 +1532,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-9d5c38c0",
+      "bom-ref": "cf-cf1eb69a",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1585,7 +1571,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-999993dc",
+      "bom-ref": "cf-e13ee627",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1615,7 +1601,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-aa9e2844",
+      "bom-ref": "cf-1efae053",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1645,7 +1631,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-dc30ee7e",
+      "bom-ref": "cf-6f011edb",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1675,7 +1661,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-a736a3ea",
+      "bom-ref": "cf-4bb6d941",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1705,8 +1691,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-5344a973",
-      "name": "DSA",
+      "bom-ref": "cf-9b7cf98b",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1726,17 +1712,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-07616348",
+      "bom-ref": "cf-06ac196e",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -1766,8 +1751,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-07ddd196",
-      "name": "DSA",
+      "bom-ref": "cf-b8816ce2",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1787,18 +1772,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-58afa31a",
-      "name": "DSA",
+      "bom-ref": "cf-2bd4fca7",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1818,18 +1802,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-fa049f62",
-      "name": "DSA",
+      "bom-ref": "cf-ed05ca8f",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1849,18 +1832,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-ff22ddea",
-      "name": "DSA",
+      "bom-ref": "cf-131bac7c",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1880,18 +1862,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-ed77acfa",
-      "name": "DSA",
+      "bom-ref": "cf-7293e6a6",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1911,18 +1892,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-de04d43c",
-      "name": "DSA",
+      "bom-ref": "cf-6955c21c",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1942,18 +1922,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-12bc3611",
-      "name": "DSA",
+      "bom-ref": "cf-4332a4f5",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -1973,18 +1952,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-3addbdf3",
-      "name": "DSA",
+      "bom-ref": "cf-dd9c23c4",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -2004,18 +1982,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-b532b40d",
-      "name": "DSA",
+      "bom-ref": "cf-8c0d46dd",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -2035,17 +2012,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-ee79b506",
+      "bom-ref": "cf-3a688b4d",
       "name": "liboqs (Open Quantum Safe)",
       "evidence": {
         "occurrences": [
@@ -2075,8 +2051,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-b889c6e4",
-      "name": "DSA",
+      "bom-ref": "cf-36b299b0",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -2096,17 +2072,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-0d75db08",
+      "bom-ref": "cf-e6f164b2",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2137,7 +2112,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-d2e3d8e2",
+      "bom-ref": "cf-2c4872fc",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2168,7 +2143,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-147a6b5c",
+      "bom-ref": "cf-70c84756",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2199,7 +2174,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-4a26a231",
+      "bom-ref": "cf-877d16c4",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -2230,7 +2205,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-7a3a09d8",
+      "bom-ref": "cf-0d007531",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -2261,7 +2236,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-4d4fb68a",
+      "bom-ref": "cf-109180be",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -2292,7 +2267,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-8db4c0e7",
+      "bom-ref": "cf-f3c0ef0e",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -2322,7 +2297,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-de02b9f9",
+      "bom-ref": "cf-9e770a72",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -2352,7 +2327,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-33f037c8",
+      "bom-ref": "cf-37241c66",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2382,8 +2357,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-d48bff98",
-      "name": "DSA",
+      "bom-ref": "cf-1a3722bc",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -2403,17 +2378,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-31c8f8e2",
+      "bom-ref": "cf-34c45a9d",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2444,7 +2418,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-2e62b58e",
+      "bom-ref": "cf-b0d53734",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -2475,8 +2449,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-02207345",
-      "name": "DSA",
+      "bom-ref": "cf-3a712cf2",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -2496,17 +2470,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-34eda71c",
+      "bom-ref": "cf-2f1459bc",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2537,7 +2510,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-535c96a1",
+      "bom-ref": "cf-82c1bb95",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2568,7 +2541,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-6846d136",
+      "bom-ref": "cf-f10d37cd",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2599,7 +2572,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-166cd588",
+      "bom-ref": "cf-67986dcc",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -2630,8 +2603,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-faef5943",
-      "name": "DSA",
+      "bom-ref": "cf-55f48240",
+      "name": "ML-KEM",
       "evidence": {
         "occurrences": [
           {
@@ -2645,23 +2618,22 @@
       "cryptoProperties": {
         "assetType": "algorithm",
         "algorithmProperties": {
-          "primitive": "signature",
+          "primitive": "pke",
           "executionEnvironment": "software",
           "implementationPlatform": "any",
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-40542e87",
+      "bom-ref": "cf-e986fd50",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2692,7 +2664,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-c95d7ab0",
+      "bom-ref": "cf-73fda6de",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -2723,8 +2695,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-c1b561be",
-      "name": "DSA",
+      "bom-ref": "cf-dd5ea032",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -2744,17 +2716,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     },
     {
       "type": "library",
-      "bom-ref": "cf-df1818bf",
+      "bom-ref": "cf-13ce4565",
       "name": "liboqs",
       "evidence": {
         "occurrences": [
@@ -2776,7 +2747,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-472f2393",
+      "bom-ref": "cf-48d555b2",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2806,7 +2777,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-681b5e3c",
+      "bom-ref": "cf-bd40f5be",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -2836,8 +2807,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-05dc4730",
-      "name": "DSA",
+      "bom-ref": "cf-6b28d45b",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -2857,17 +2828,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-7124c489",
+      "bom-ref": "cf-0b103c8e",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -2897,7 +2867,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-c408cbcf",
+      "bom-ref": "cf-b493970a",
       "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
@@ -2927,8 +2897,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-891b0e9d",
-      "name": "DSA",
+      "bom-ref": "cf-8c02c19e",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -2948,17 +2918,16 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-f1e5129f",
+      "bom-ref": "cf-5290541f",
       "name": "Falcon",
       "evidence": {
         "occurrences": [
@@ -2988,7 +2957,7 @@
     },
     {
       "type": "library",
-      "bom-ref": "cf-7289f566",
+      "bom-ref": "cf-c2899715",
       "name": "liboqs",
       "evidence": {
         "occurrences": [
@@ -3010,8 +2979,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-18a1e345",
-      "name": "DSA",
+      "bom-ref": "cf-c22767db",
+      "name": "ML-KEM",
       "evidence": {
         "occurrences": [
           {
@@ -3025,23 +2994,22 @@
       "cryptoProperties": {
         "assetType": "algorithm",
         "algorithmProperties": {
-          "primitive": "signature",
+          "primitive": "pke",
           "executionEnvironment": "software",
           "implementationPlatform": "any",
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 203 (ML-KEM)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-82c0b045",
+      "bom-ref": "cf-a3afd759",
       "name": "ML-DSA",
       "evidence": {
         "occurrences": [
@@ -3071,7 +3039,7 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-93f26f21",
+      "bom-ref": "cf-bb702983",
       "name": "ML-KEM",
       "evidence": {
         "occurrences": [
@@ -3101,8 +3069,8 @@
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-b1ed020d",
-      "name": "DSA",
+      "bom-ref": "cf-4486a4b1",
+      "name": "ML-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -3122,18 +3090,17 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 204 (ML-DSA)"
       }
     },
     {
       "type": "algorithm",
-      "bom-ref": "cf-611b0202",
-      "name": "DSA",
+      "bom-ref": "cf-1b928a7a",
+      "name": "SLH-DSA",
       "evidence": {
         "occurrences": [
           {
@@ -3153,12 +3120,11 @@
           "certificationLevel": [
             "none"
           ]
-        },
-        "oid": "1.2.840.10040.4.1"
+        }
       },
       "_quantumRisk": {
-        "level": "vulnerable",
-        "pqcReplacement": "ML-DSA-65 (FIPS 204)"
+        "level": "pqc",
+        "pqcReplacement": "Already NIST FIPS 205 (SLH-DSA)"
       }
     }
   ]
