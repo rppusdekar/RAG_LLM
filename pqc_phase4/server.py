@@ -25,7 +25,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 from fastapi import FastAPI, HTTPException, Request, Depends
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, HTMLResponse
 from pydantic import BaseModel
 
 from .crypto import (
@@ -56,6 +56,16 @@ def startup():
     print(f"[PQC Server] KEM  algorithm : {registry.kem_alg}")
     print(f"[PQC Server] SIG  algorithm : {registry.sig_alg}")
     print(f"[PQC Server] Token authority ready (verify key {len(_token_authority.verify_key)} bytes)")
+
+
+# ── Resume viewer ────────────────────────────────────────────────────────────
+
+@app.get("/resume", response_class=HTMLResponse, include_in_schema=False)
+def serve_resume():
+    """Serve the edited resume HTML so it can be opened in any browser."""
+    resume_path = os.path.join(os.path.dirname(__file__), "..", "resume_edited", "Rahul_Pusdekar_Crypto_Inventory_Analyst.html")
+    with open(os.path.abspath(resume_path), "r", encoding="utf-8") as f:
+        return f.read()
 
 
 # ── Response signing middleware ───────────────────────────────────────────────
