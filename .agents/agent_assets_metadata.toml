@@ -1,0 +1,9 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "ww3JcKyrQl8plx-GLQq3-"
+uri = "file://resume_edited/Rahul_Pusdekar_Crypto_Inventory_Analyst.html"
+type = "unspecified"
+title = "Edited Resume — Cryptographic Inventory Analyst"
+description = "Open in browser → File → Print → Save as PDF to get a clean document. Yellow highlights show new/changed content — remove before submitting."

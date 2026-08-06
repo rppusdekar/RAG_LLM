@@ -8,6 +8,7 @@ dependencies = [
     "fastapi>=0.141.1",
     "httpx>=0.28.1",
     "liboqs-python>=0.16.0",
+    "pymupdf>=1.28.0",
     "python-dotenv>=1.2.2",
     "uvicorn[standard]>=0.52.0",
 ]
