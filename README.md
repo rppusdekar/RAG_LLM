@@ -1,9 +1,10 @@
 # PQC Learning Lab + CBOM Scanner
 
-A hands-on post-quantum cryptography portfolio built to prepare for the
-**Cryptographic Inventory Analyst** role — covering PQC foundations,
-a FastAPI PQC service implementing FIPS 203/204/205, and a CBOM scanner
-that inventories cryptographic assets and classifies quantum risk.
+A self-study project for learning post-quantum cryptography hands-on —
+implementing the NIST PQC standards (FIPS 203/204/205) in a real FastAPI
+service and building a Cryptographic Bill of Materials (CBOM) scanner that
+inventories cryptographic assets across codebases, classifies quantum risk,
+and outputs CycloneDX 1.6 CBOM JSON for compliance reporting.
 
 ---
 
