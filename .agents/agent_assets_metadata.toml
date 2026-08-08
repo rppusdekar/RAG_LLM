@@ -7,3 +7,10 @@ uri = "file://resume_edited/Rahul_Pusdekar_Crypto_Inventory_Analyst.html"
 type = "unspecified"
 title = "Resume (updated) — honest framing"
 description = "Summary now clearly positions PQC/CBOM as self-initiated upskilling, not professional experience."
+
+[[outputs]]
+id = "iqN9TWbRSG5ZDGT03iaIy"
+uri = "file://resume_edited/cover_letter.html"
+type = "unspecified"
+title = "Cover Letter — Cryptographic Inventory Analyst"
+description = "Open in browser → Print → Save as PDF. One page, honest framing throughout."
