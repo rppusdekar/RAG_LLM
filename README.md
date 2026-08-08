@@ -25,6 +25,34 @@ The scanner directly demonstrates the core skill of a Cryptographic Inventory An
 automated discovery of all cryptographic assets, quantum risk classification, and
 machine-readable CBOM output for stakeholders and compliance teams.
 
+### Scanner architecture
+
+```mermaid
+flowchart TD
+    A[Input] --> B[Source Code\npqc_phase3 · Java · Go · YAML · config]
+    A --> C[X.509 Certificates\n.pem · .crt · .cer · .der]
+    A --> D[Live TLS Endpoint\nhostname:port]
+
+    B --> E[Static Analysis Engine]
+    E --> F[Python AST Detector\nimports · hashlib.new · cipher calls]
+    E --> G[Regex Detector\n40+ file extensions]
+    C --> H[Certificate Detector\nkey size · expiry · CNSA 2.0 checks]
+    D --> I[TLS Scanner\nprotocol · cipher suite · cert chain]
+
+    F & G & H & I --> J[Risk Classifier]
+
+    J --> K[🔴 VULNERABLE\nRSA · ECDSA · DH · DSA\nbroken by Shor's algorithm]
+    J --> L[🟡 WEAKENED\nAES-128 · SHA-256\nhalved by Grover's algorithm]
+    J --> M[🟢 SAFE\nAES-256-GCM · SHA-384/512]
+    J --> N[✅ PQC\nML-KEM · ML-DSA · SLH-DSA]
+
+    K & L & M & N --> O[Output]
+    O --> P[CycloneDX 1.6\nCBOM JSON]
+    O --> Q[HTML Stakeholder\nReport]
+    O --> R[Risk Scorecard\n0–100 · Letter grade]
+    O --> S[CI/CD Gate\nexit 1 on VULNERABLE]
+```
+
 ### Quick start
 
 ```bash
@@ -107,6 +135,39 @@ encaps/decaps, sign/verify, benchmarks, and parameter set comparison.
 ---
 
 ## Phase 4 — FastAPI PQC service
+
+### Key exchange + authentication flow
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as PQC Server (FastAPI)
+
+    Note over C: Generate X25519 keypair
+    Note over C: Generate ML-KEM-768 keypair
+
+    C->>S: POST /kex {x25519_pub, mlkem_pub}
+    Note over S: X25519 → shared_secret_1
+    Note over S: ML-KEM encapsulate → shared_secret_2
+    Note over S: HKDF(secret_1 ‖ secret_2) → session_key
+    S-->>C: {x25519_pub, mlkem_ciphertext, session_id}
+
+    Note over C: X25519 → shared_secret_1
+    Note over C: ML-KEM decapsulate → shared_secret_2
+    Note over C: HKDF(secret_1 ‖ secret_2) → session_key
+    Note over C,S: Both hold identical session_key ✅
+
+    C->>S: POST /auth/token {session_id, username}
+    Note over S: Issue Post-Quantum Token (PQT)
+    Note over S: ML-DSA-65 signs header.payload.signature
+    S-->>C: PQT (3-part signed token)
+
+    C->>S: GET /api/profile  Authorization: Bearer <PQT>
+    Note over S: Verify ML-DSA signature on token
+    Note over S: Sign response body with ML-DSA
+    S-->>C: JSON response + X-PQC-Signature header
+    Note over C: Verify response signature with server's verify key
+```
 
 ```bash
 # Start server
