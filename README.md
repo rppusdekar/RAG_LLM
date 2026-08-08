@@ -2,8 +2,8 @@
 
 A hands-on post-quantum cryptography portfolio built to prepare for the
 **Cryptographic Inventory Analyst** role — covering PQC foundations,
-a production-grade FastAPI PQC service, and a CBOM scanner that inventories
-cryptographic assets and classifies quantum risk.
+a FastAPI PQC service implementing FIPS 203/204/205, and a CBOM scanner
+that inventories cryptographic assets and classifies quantum risk.
 
 ---
 
