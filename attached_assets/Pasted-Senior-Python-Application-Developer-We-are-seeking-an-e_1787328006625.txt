@@ -1,0 +1,38 @@
+Senior Python Application Developer
+We are seeking an exceptionally skilled and driven Lead Python Application Developer to architect, develop, and deliver mission-critical enterprise applications within a high-performance Python ecosystem. This role demands a seasoned technologist with a proven track record of technical leadership, deep expertise in scalable system design, and a passion for driving innovation through cutting-edge Python development. The successful candidate will play a pivotal role in shaping our technical roadmap, mentoring engineering teams, and ensuring the robust, secure, and efficient execution of strategic initiatives.
+
+Required Qualifications:
+I. Advanced Technical Leadership & Architectural Acumen:
+8+ years of progressive experience in application development and systems architecture, with a laser focus on Python-centric solutions.
+Demonstrable expertise in end-to-end software development lifecycle (SDLC) leadership, from strategic planning and solution architecture to deployment and post-production optimization.
+Proven capability to lead and inspire cross-functional engineering teams, foster a culture of technical excellence, and enforce rigorous code quality standards through comprehensive code reviews and design critiques.
+Act as a Subject Matter Expert (SME) in advanced Python paradigms, including asynchronous programming (asyncio), concurrency, and parallel processing, alongside profound knowledge of modern frameworks such as FastAPI, Django REST Framework, and Flask.
+Mastery of enterprise-grade software architecture patterns, including Microservices, Event-Driven Architectures (Kafka, RabbitMQ), Domain-Driven Design (DDD), and GraphQL.
+Deep understanding of Object-Oriented Programming (OOP) and Functional Programming principles, applying them to construct highly modular, extensible, and maintainable codebases.
+II. Core Technical Proficiency & Implementation Excellence:
+Expert-level proficiency in Python 3.x, with extensive experience in developing high-throughput, low-latency, and fault-tolerant applications leveraging its comprehensive standard library and vibrant third-party ecosystem.
+Comprehensive hands-on experience with diverse database technologies, including advanced SQL optimization for relational databases (e.g., PostgreSQL, Oracle, SQL Server) and schema design for NoSQL solutions (e.g., MongoDB, Cassandra, Elasticsearch, Redis).
+Architectural and implementation expertise in designing, securing (OAuth2, JWT), and optimizing RESTful and gRPC APIs, focusing on idempotency, rate limiting, and robust error handling.
+Mandatory hands-on experience with enterprise CI/CD pipelines (e.g., Jenkins, GitLab CI, GitHub Actions, Azure DevOps) to implement fully automated testing, build, and deployment strategies (GitOps principles).
+Extensive cloud platform experience (AWS, Azure, or GCP), encompassing infrastructure-as-code (Terraform, CloudFormation), serverless computing (AWS Lambda, Azure Functions), and a deep understanding of cloud-native services.
+Proficient in containerization technologies (Docker) and advanced Kubernetes orchestration, including Helm, service meshes (Istio, Linkerd), and custom resource definitions (CRDs).
+Elite-level troubleshooting, performance profiling, and optimization skills for distributed systems, leveraging tools like Prometheus, Grafana, Jaeger, and custom instrumentation.
+Advocate and implement advanced automated testing strategies (unit, integration, end-to-end, performance) using frameworks like Pytest, Hypothesis, and Selenium, embracing Test-Driven Development (TDD) as a core practice.
+Robust understanding and practical application of secure coding principles, static/dynamic analysis tools, and best practices for mitigating common vulnerabilities (OWASP Top 10, data encryption, secrets management with Vault).
+Expertise in advanced Git workflows (Gitflow, Trunk-Based Development), including sophisticated branching, merging strategies, and pull request automation.
+III. Artificial Intelligence (AI) Integration & Development:
+Demonstrated experience with AI/Machine Learning lifecycle, from data preprocessing and model training to deployment and monitoring, utilizing frameworks such as TensorFlow, PyTorch, Hugging Face, and scikit-learn.
+Practical experience integrating and leveraging advanced AI development tools and platforms (e.g., GitHub Copilot, Devin, Windsurf, Antigravity) to enhance developer productivity and code quality.
+Hands-on experience designing, developing, and deploying Agentic AI systems, including the creation of custom agents, defining specialized skills, and contributing to agentic frameworks for automating complex development and operational workflows.
+Strong understanding and practical application of Generative AI models (e.g., GPT, Gemini, Claude) for code generation, natural language processing (NLP) tasks, and intelligent automation within the software development pipeline.
+IV. Methodology & Professional Skills:
+Deep understanding and practical experience with Agile/Scrum/Kanban methodologies, fostering a collaborative, iterative, and results-oriented development environment.
+Exceptional organizational skills, with the ability to dynamically re-prioritize and meticulously manage multiple high-stakes tasks in a fast-paced, evolving technical landscape.
+Proven leadership in project management, including meticulous stakeholder communication, resource optimization, and cross-functional team coordination.
+Superior written and verbal communication skills, capable of articulating complex technical concepts with clarity and precision to both technical and executive audiences.
+Desirable Qualifications:
+Polyglot Programming Proficiency: Experience with additional programming languages (e.g., Java, Go, Scala, Rust), particularly in the context of enterprise microservices or high-performance computing.
+Big Data & Real-time Analytics: Hands-on experience with Big Data technologies (e.g., Apache Spark, Flink, Hadoop, Kafka Streams) and architecting real-time data processing pipelines.
+Frontend Development Expertise: Proficiency in modern frontend frameworks (e.g., React.js, Angular, Vue.js) for full-stack application delivery.
+Cloud & Industry Certifications: Relevant advanced cloud certifications (e.g., AWS Certified Solutions Architect - Professional, Azure Solutions Architect Expert, Google Cloud Professional Cloud Architect) or industry-recognized certifications in specialized technical domains.
+Financial Domain Acumen: In-depth understanding of financial services industry regulations, compliance standards, and specific domain knowledge relevant to capital markets, retail banking, or enterprise risk management.
