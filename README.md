@@ -1,4 +1,41 @@
-# PQC Learning Lab + CBOM Scanner
+# Grounded Docs RAG App + PQC Learning Lab
+
+This repository contains two self-study portfolios:
+
+1. **Grounded Docs** — a minimal React/Vite document Q&A application demonstrating
+   retrieval-augmented generation (RAG), deterministic chunk retrieval, OpenAI
+   generation, and source citations.
+2. **PQC Learning Lab + CBOM Scanner** — hands-on post-quantum cryptography demos
+   and a Cryptographic Bill of Materials scanner.
+
+## Grounded Docs
+
+Grounded Docs lets users paste or upload `.txt`/`.md` documents, index them, ask
+questions, and receive answers grounded in retrieved passages. It uses
+**`gpt-5.4-mini`** through the Replit-managed OpenAI integration.
+
+RAG pipeline:
+
+```text
+Ingest → Chunk → Retrieve → Generate → Cite
+```
+
+The implementation intentionally uses deterministic lexical retrieval instead of
+embeddings or a vector database so the complete flow is easy to inspect. It also
+validates source citations and returns an explicit insufficient-context response
+when the knowledge base does not contain enough evidence.
+
+Documentation:
+
+- [Grounded Docs README](artifacts/grounded-docs/README.md) — architecture, setup,
+  API examples, model details, limitations, and verification
+- [OpenAPI specification](lib/api-spec/openapi.yaml) — typed API contract
+
+The Grounded Docs app is a demo: its in-memory knowledge base resets when the API
+restarts and is not intended for sensitive or production documents without adding
+authentication, scoped persistence, and stronger operational controls.
+
+---
 
 A self-study project for learning post-quantum cryptography hands-on —
 implementing the NIST PQC standards (FIPS 203/204/205) in a real FastAPI
