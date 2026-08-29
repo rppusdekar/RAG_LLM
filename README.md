@@ -1,231 +1,229 @@
-# Grounded Docs RAG App + PQC Learning Lab
+# Grounded Docs
 
-This repository contains two self-study portfolios:
+Grounded Docs is a minimal document question-answering application that
+demonstrates the core mechanics of **retrieval-augmented generation (RAG)**.
 
-1. **Grounded Docs** — a minimal React/Vite document Q&A application demonstrating
-   retrieval-augmented generation (RAG), deterministic chunk retrieval, OpenAI
-   generation, and source citations.
-2. **PQC Learning Lab + CBOM Scanner** — hands-on post-quantum cryptography demos
-   and a Cryptographic Bill of Materials scanner.
+Users can paste text or upload a `.txt`/`.md` file, index it as a document, ask
+a question, and receive an answer generated from retrieved document chunks.
+Answers include source excerpts and verifiable `[Source N]` citations.
 
-## Grounded Docs
+## RAG pipeline
 
-Grounded Docs lets users paste or upload `.txt`/`.md` documents, index them, ask
-questions, and receive answers grounded in retrieved passages. It uses
-**`gpt-5.4-mini`** through the Replit-managed OpenAI integration.
+```mermaid
+flowchart LR
+    A[Paste or upload document] --> B[Ingest]
+    B --> C[Normalize and chunk]
+    C --> D[Store in demo knowledge base]
+    Q[User question] --> E[Tokenize question]
+    D --> F[Rank relevant chunks]
+    E --> F
+    F --> G{Strong evidence?}
+    G -- No --> H[Insufficient-context response]
+    G -- Yes --> I[Grounded prompt]
+    I --> J[gpt-5.4-mini]
+    J --> K[Validate citations]
+    K --> L[Answer and source cards]
+```
 
-RAG pipeline:
+The interface also shows the flow as:
 
 ```text
 Ingest → Chunk → Retrieve → Generate → Cite
 ```
 
-The implementation intentionally uses deterministic lexical retrieval instead of
-embeddings or a vector database so the complete flow is easy to inspect. It also
-validates source citations and returns an explicit insufficient-context response
-when the knowledge base does not contain enough evidence.
+## Features
 
-Documentation:
+- Paste text or upload `.txt` and `.md` files
+- Normalize and split documents into searchable chunks
+- Deterministic lexical retrieval without vector infrastructure
+- Grounded answer generation using `gpt-5.4-mini`
+- Source excerpts, retrieval scores, and citation validation
+- Explicit insufficient-context responses
+- Basic request validation and question rate limiting
+- Typed OpenAPI contract with generated React Query hooks and Zod schemas
+- Responsive React/Vite interface with loading, empty, and error states
 
-- [Grounded Docs README](artifacts/grounded-docs/README.md) — architecture, setup,
-  API examples, model details, limitations, and verification
-- [OpenAPI specification](lib/api-spec/openapi.yaml) — typed API contract
+## Architecture
 
-The Grounded Docs app is a demo: its in-memory knowledge base resets when the API
-restarts and is not intended for sensitive or production documents without adding
-authentication, scoped persistence, and stronger operational controls.
-
----
-
-A self-study project for learning post-quantum cryptography hands-on —
-implementing the NIST PQC standards (FIPS 203/204/205) in a real FastAPI
-service and building a Cryptographic Bill of Materials (CBOM) scanner that
-inventories cryptographic assets across codebases, classifies quantum risk,
-and outputs CycloneDX 1.6 CBOM JSON for compliance reporting.
-
----
-
-## Repository map
-
-```
-pqc_phase3/         NIST PQC algorithm demos (ML-KEM, ML-DSA, SLH-DSA via liboqs)
-pqc_phase4/         FastAPI PQC service — hybrid KEM, PQT tokens, signed responses
-cbom_scanner/       Cryptographic Bill of Materials scanner (CycloneDX 1.6 output)
-sample_client/      Fictional pre-migration banking API — used as portfolio demo target
+```text
+React/Vite frontend
+        │
+        │ typed generated client
+        ▼
+Express API server
+        │
+        ├── document ingestion and chunking
+        ├── deterministic lexical retrieval
+        ├── grounded prompt construction
+        ├── citation validation
+        └── Replit-managed OpenAI integration
 ```
 
----
+## Repository structure
 
-## CBOM Scanner — portfolio centrepiece
+```text
+artifacts/grounded-docs/
+├── src/components/knowledge-base.tsx  # upload, form, document list, summary
+├── src/components/qa-workspace.tsx    # questions, answers, source cards
+├── src/pages/home.tsx                 # application shell
+└── src/index.css                      # visual theme
 
-The scanner directly demonstrates the core skill of a Cryptographic Inventory Analyst:
-automated discovery of all cryptographic assets, quantum risk classification, and
-machine-readable CBOM output for stakeholders and compliance teams.
+artifacts/api-server/src/routes/knowledge.ts
+                                      # ingestion, retrieval, and LLM route
 
-### Scanner architecture
-
-```mermaid
-flowchart TD
-    A[Input] --> B[Source Code\npqc_phase3 · Java · Go · YAML · config]
-    A --> C[X.509 Certificates\n.pem · .crt · .cer · .der]
-    A --> D[Live TLS Endpoint\nhostname:port]
-
-    B --> E[Static Analysis Engine]
-    E --> F[Python AST Detector\nimports · hashlib.new · cipher calls]
-    E --> G[Regex Detector\n40+ file extensions]
-    C --> H[Certificate Detector\nkey size · expiry · CNSA 2.0 checks]
-    D --> I[TLS Scanner\nprotocol · cipher suite · cert chain]
-
-    F & G & H & I --> J[Risk Classifier]
-
-    J --> K[🔴 VULNERABLE\nRSA · ECDSA · DH · DSA\nbroken by Shor's algorithm]
-    J --> L[🟡 WEAKENED\nAES-128 · SHA-256\nhalved by Grover's algorithm]
-    J --> M[🟢 SAFE\nAES-256-GCM · SHA-384/512]
-    J --> N[✅ PQC\nML-KEM · ML-DSA · SLH-DSA]
-
-    K & L & M & N --> O[Output]
-    O --> P[CycloneDX 1.6\nCBOM JSON]
-    O --> Q[HTML Stakeholder\nReport]
-    O --> R[Risk Scorecard\n0–100 · Letter grade]
-    O --> S[CI/CD Gate\nexit 1 on VULNERABLE]
+lib/api-spec/openapi.yaml              # API source of truth
+lib/api-client-react/                  # generated React Query client
+lib/api-zod/                           # generated request/response schemas
+lib/integrations-openai-ai-server/     # managed OpenAI SDK wrapper
 ```
 
-### Quick start
+## Requirements
+
+- Node.js
+- pnpm
+- A Replit-managed OpenAI integration
+
+The server expects these managed environment values:
+
+```text
+AI_INTEGRATIONS_OPENAI_API_KEY
+AI_INTEGRATIONS_OPENAI_BASE_URL
+```
+
+Provision them through Replit AI Integrations. Never put API keys in frontend
+code or commit them to the repository.
+
+## Run in Replit
+
+The workspace includes these workflows:
+
+```text
+artifacts/api-server: API Server
+artifacts/grounded-docs: web
+```
+
+The web application is served at:
+
+```text
+/grounded-docs/
+```
+
+The frontend calls the shared API through the artifact-aware `/api` path.
+
+## Run locally
+
+Install dependencies from the repository root:
 
 ```bash
-# Scan source code
-PYTHONPATH=. python3 -m cbom_scanner.cli pqc_phase4
-
-# Scan a live TLS endpoint
-PYTHONPATH=. python3 -m cbom_scanner.cli --tls github.com
-
-# Combined: source + endpoint
-PYTHONPATH=. python3 -m cbom_scanner.cli src/ --tls api.example.com
-
-# CycloneDX 1.6 JSON output
-PYTHONPATH=. python3 -m cbom_scanner.cli . --format cyclonedx --output cbom.json
-
-# HTML stakeholder report
-PYTHONPATH=. python3 -m cbom_scanner.cli . --format html --output report.html
-
-# CI gate — exits 1 if quantum-vulnerable crypto found
-PYTHONPATH=. python3 -m cbom_scanner.cli src/ --min-risk vulnerable
+pnpm install
 ```
 
-### What it detects
-
-| Category | Examples |
-|---|---|
-| **Quantum-vulnerable** 🔴 | RSA, ECDSA, ECDH, DH, DSA, MD5, 3DES, RC4, TLS 1.0/1.1 |
-| **Quantum-weakened** 🟡 | AES-128, SHA-256, TLS 1.2/1.3 without ML-KEM hybrid |
-| **Quantum-safe** 🟢 | AES-256-GCM, ChaCha20-Poly1305, SHA-384/512 |
-| **NIST PQC** ✅ | ML-KEM (FIPS 203), ML-DSA (FIPS 204), SLH-DSA (FIPS 205) |
-| **TLS endpoint** | Protocol, cipher suite, certificate algorithm, CNSA 2.0 checks |
-| **X.509 certificates** | Key algorithm, key size, expiry, SHA-1 signatures, post-2030 validity |
-
-### Output formats
-
-| Format | Use case |
-|---|---|
-| `--format table` | Terminal — developer / analyst workflow |
-| `--format cyclonedx` | Machine-readable CycloneDX 1.6 CBOM JSON — SBOM tooling, dashboards |
-| `--format html` | Stakeholder report — self-contained, open in any browser |
-
----
-
-## Sample engagement report
-
-`sample_client/` is a fictional pre-migration banking API (AcmeCorp) built to
-represent the state of most enterprise systems before PQC transition — RSA JWTs,
-ECDSA transaction signing, AES-128-CBC, 3DES legacy fields, RC4, and RSA-2048 certs.
-
-**Scan results: 67 cryptographic components — Risk score 0/100 (F — Critically Vulnerable)**
-
-| Finding | Count |
-|---|---|
-| 🔴 Vulnerable | 115 |
-| 🟡 Weakened | 52 |
-| 🟢 Safe / PQC | 69 |
-
-**Top migration priorities identified:**
-1. RSA-2048 JWT signing → ML-DSA-65 (FIPS 204) Post-Quantum Tokens
-2. ECDSA P-256 transaction signing → ML-DSA-65 (10-year archive at retroactive risk)
-3. AES-128-CBC PII encryption → AES-256-GCM (authenticated + quantum-safe)
-4. 3DES / RC4 legacy fields → AES-256-GCM (classically broken — immediate action)
-5. TLS 1.1/1.2 → TLS 1.3 + X25519MLKEM768 hybrid cipher suite
-6. RSA-2048 certificates → Reissue with ML-DSA-65 before CNSA 2.0 deadline (2030)
-
-To view the HTML report: open `sample_client/cbom_report.html` in a browser.
-CycloneDX JSON: `sample_client/cbom.json`
-
----
-
-## Phase 3 — NIST PQC algorithm demos
+Start the API:
 
 ```bash
-PYTHONPATH=. python3 pqc_phase3/run_all.py
+pnpm --filter @workspace/api-server run dev
 ```
 
-Covers: ML-KEM (FIPS 203), ML-DSA (FIPS 204), SLH-DSA (FIPS 205) — keygen,
-encaps/decaps, sign/verify, benchmarks, and parameter set comparison.
-
----
-
-## Phase 4 — FastAPI PQC service
-
-### Key exchange + authentication flow
-
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as PQC Server (FastAPI)
-
-    Note over C: Generate X25519 keypair
-    Note over C: Generate ML-KEM-768 keypair
-
-    C->>S: POST /kex {x25519_pub, mlkem_pub}
-    Note over S: X25519 → shared_secret_1
-    Note over S: ML-KEM encapsulate → shared_secret_2
-    Note over S: HKDF(secret_1 ‖ secret_2) → session_key
-    S-->>C: {x25519_pub, mlkem_ciphertext, session_id}
-
-    Note over C: X25519 → shared_secret_1
-    Note over C: ML-KEM decapsulate → shared_secret_2
-    Note over C: HKDF(secret_1 ‖ secret_2) → session_key
-    Note over C,S: Both hold identical session_key ✅
-
-    C->>S: POST /auth/token {session_id, username}
-    Note over S: Issue Post-Quantum Token (PQT)
-    Note over S: ML-DSA-65 signs header.payload.signature
-    S-->>C: PQT (3-part signed token)
-
-    C->>S: GET /api/profile  Authorization: Bearer <PQT>
-    Note over S: Verify ML-DSA signature on token
-    Note over S: Sign response body with ML-DSA
-    S-->>C: JSON response + X-PQC-Signature header
-    Note over C: Verify response signature with server's verify key
-```
+Start the frontend:
 
 ```bash
-# Start server
-python3 -m uvicorn pqc_phase4.server:app --host 0.0.0.0 --port 8000
-
-# Run full 8-step demo
-PYTHONPATH=. python3 pqc_phase4/client_demo.py
+PORT=19246 \
+BASE_PATH=/grounded-docs/ \
+pnpm --filter @workspace/grounded-docs run dev
 ```
 
-Endpoints:
-- `POST /kex` — hybrid X25519 + ML-KEM-768 key exchange
-- `POST /auth/token` — Post-Quantum Token (ML-DSA-65 signed)
-- `GET /api/*` — ML-DSA signed protected responses
-- `GET /.well-known/pqc-keys` — verify key distribution (JWKS-like)
-- `GET /algorithms` — crypto-agility: active algorithms + all available
+The API listens on port `8080` by default. In Replit, use the preview proxy so
+the frontend and `/api` routes resolve correctly.
 
----
+## API
 
-## Stack
+The API is mounted under `/api`.
 
-- Python 3.11+, FastAPI, uvicorn, liboqs-python (Open Quantum Safe)
-- NIST standards: FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), FIPS 205 (SLH-DSA)
-- CBOM standard: CycloneDX 1.6
-- Compliance reference: NSA CNSA 2.0, NIST SP 800-131A Rev 2
+| Method | Endpoint | Purpose |
+|---|---|---|
+| `GET` | `/api/documents` | List indexed documents |
+| `POST` | `/api/documents` | Add and chunk a text document |
+| `GET` | `/api/knowledge-summary` | Return document, chunk, and character counts |
+| `POST` | `/api/ask` | Retrieve context and generate a cited answer |
+
+### Add a document
+
+```bash
+curl -X POST http://localhost:8080/api/documents \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "name": "Architecture notes",
+    "content": "The service uses a queue for asynchronous processing. Consumers are idempotent so retries do not create duplicate side effects."
+  }'
+```
+
+### Ask a question
+
+```bash
+curl -X POST http://localhost:8080/api/ask \
+  -H 'Content-Type: application/json' \
+  -d '{"question":"Why are consumers idempotent?"}'
+```
+
+Example response shape:
+
+```json
+{
+  "answer": "Consumers are idempotent because retries ... [Source 1]",
+  "sources": [
+    {
+      "documentId": "document-id",
+      "documentName": "Architecture notes",
+      "chunkIndex": 0,
+      "excerpt": "Consumers are idempotent ...",
+      "score": 2.4
+    }
+  ],
+  "retrievedChunks": 1,
+  "grounded": true
+}
+```
+
+If relevant evidence is not found, the API returns `grounded: false` without
+calling the model. If the managed model is unavailable, it returns `503` with
+an actionable error.
+
+## Grounding and safety behavior
+
+The server:
+
+1. Retrieves the highest-scoring relevant chunks.
+2. Places them in a delimited `<retrieved_context>` block.
+3. Tells the model to treat document content as untrusted reference data, not
+   as instructions.
+4. Requires factual claims to cite `[Source N]`.
+5. Verifies that citations reference supplied sources.
+6. Downgrades responses that do not contain valid citations.
+
+## Limitations
+
+This is a learning/demo application, not a production document platform.
+
+- Documents are stored in process memory and reset when the API restarts.
+- The demo knowledge base is shared by all users of the running process.
+- There is no authentication, workspace isolation, or document deletion.
+- CORS and rate limiting are intended for the development demo environment.
+- Retrieval is lexical and intentionally does not use embeddings.
+
+Production use would require authenticated access, scoped persistent storage,
+stricter CORS, stronger rate limiting, audit logging, and retrieval evaluation.
+
+## Verification
+
+```bash
+pnpm -w run typecheck
+PORT=19246 BASE_PATH=/grounded-docs/ \
+  pnpm --filter @workspace/grounded-docs run build
+pnpm --filter @workspace/api-server run build
+```
+
+The browser-tested flow covers document indexing, summary refresh, question
+submission, grounded answer generation, and matching source citation display.
+
+For the more detailed app-specific notes, see
+[artifacts/grounded-docs/README.md](artifacts/grounded-docs/README.md).
