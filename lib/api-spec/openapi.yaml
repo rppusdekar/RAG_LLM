@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: knowledge
+    description: Knowledge base and grounded question answering
 paths:
   /healthz:
     get:
@@ -24,6 +26,73 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /documents:
+    get:
+      operationId: listDocuments
+      tags: [knowledge]
+      summary: List knowledge documents
+      responses:
+        "200":
+          description: Current knowledge documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Document"
+    post:
+      operationId: createDocument
+      tags: [knowledge]
+      summary: Add a text document to the knowledge base
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DocumentInput"
+      responses:
+        "201":
+          description: Document added
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+        "400":
+          description: Invalid document
+  /ask:
+    post:
+      operationId: askKnowledgeBase
+      tags: [knowledge]
+      summary: Ask a grounded question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuestionInput"
+      responses:
+        "200":
+          description: Grounded answer with retrieved sources
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Answer"
+        "400":
+          description: Invalid question
+        "503":
+          description: Language model unavailable
+  /knowledge-summary:
+    get:
+      operationId: getKnowledgeSummary
+      tags: [knowledge]
+      summary: Summarize the indexed knowledge base
+      responses:
+        "200":
+          description: Knowledge base summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/KnowledgeSummary"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +102,76 @@ components:
           type: string
       required:
         - status
+    Document:
+      type: object
+      required: [id, name, content, chunkCount, createdAt]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        content:
+          type: string
+        chunkCount:
+          type: integer
+        createdAt:
+          type: string
+    DocumentInput:
+      type: object
+      required: [name, content]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        content:
+          type: string
+          minLength: 20
+          maxLength: 100000
+    QuestionInput:
+      type: object
+      required: [question]
+      properties:
+        question:
+          type: string
+          minLength: 3
+          maxLength: 1000
+    Source:
+      type: object
+      required: [documentId, documentName, chunkIndex, excerpt, score]
+      properties:
+        documentId:
+          type: string
+        documentName:
+          type: string
+        chunkIndex:
+          type: integer
+        excerpt:
+          type: string
+        score:
+          type: number
+    Answer:
+      type: object
+      required: [answer, sources, retrievedChunks, grounded]
+      properties:
+        answer:
+          type: string
+        sources:
+          type: array
+          items:
+            $ref: "#/components/schemas/Source"
+        retrievedChunks:
+          type: integer
+        grounded:
+          type: boolean
+    KnowledgeSummary:
+      type: object
+      required: [documentCount, chunkCount, characterCount]
+      properties:
+        documentCount:
+          type: integer
+        chunkCount:
+          type: integer
+        characterCount:
+          type: integer
 

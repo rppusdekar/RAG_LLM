@@ -1,0 +1,1 @@
+- [Managed AI verification](managed-ai-verification.md) — Replit-managed OpenAI provisioning may pause for phone verification; retry setup afterward.

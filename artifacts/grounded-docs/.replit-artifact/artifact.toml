@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/grounded-docs/"
+title = "Grounded Docs"
+description = "A minimal document question-answering app that demonstrates local retrieval, grounded LLM generation, and source citations for technical knowledge bases."
+version = "1.0.0"
+id = "artifacts/grounded-docs"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/grounded-docs/" ]
+localPort = 19246
+
+[services.development]
+run = "pnpm --filter @workspace/grounded-docs run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/grounded-docs", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/grounded-docs/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19246"
+BASE_PATH = "/grounded-docs/"
