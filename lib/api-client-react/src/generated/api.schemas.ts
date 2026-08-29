@@ -9,12 +9,39 @@ export interface HealthStatus {
   status: string;
 }
 
+export type DocumentFormat = typeof DocumentFormat[keyof typeof DocumentFormat];
+
+
+export const DocumentFormat = {
+  txt: 'txt',
+  md: 'md',
+  pdf: 'pdf',
+  html: 'html',
+  docx: 'docx',
+  xlsx: 'xlsx',
+  xls: 'xls',
+} as const;
+
+export type DocumentSourceType = typeof DocumentSourceType[keyof typeof DocumentSourceType];
+
+
+export const DocumentSourceType = {
+  sample: 'sample',
+  paste: 'paste',
+  upload: 'upload',
+} as const;
+
 export interface Document {
   id: string;
   name: string;
   content: string;
   chunkCount: number;
   createdAt: string;
+  format: DocumentFormat;
+  sourceType: DocumentSourceType;
+  mimeType: string;
+  sizeBytes: number;
+  extractedCharacterCount: number;
 }
 
 export interface DocumentInput {
@@ -28,6 +55,10 @@ export interface DocumentInput {
      * @maxLength 100000
      */
   content: string;
+}
+
+export interface DocumentUploadInput {
+  file: Blob;
 }
 
 export interface QuestionInput {

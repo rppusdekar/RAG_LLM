@@ -2,16 +2,16 @@ import { useState, useRef, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { CornerDownLeft, Loader2, Sparkles, BookOpen, Quote } from "lucide-react"
+import { CornerDownLeft, Loader2, BookOpen, Quote, ShieldCheck, ShieldAlert, Cpu } from "lucide-react"
 
 import { useAskKnowledgeBase } from "@workspace/api-client-react"
 import type { Answer, Source } from "@workspace/api-client-react"
 
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Skeleton } from "./ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton"
 
 const questionSchema = z.object({
   question: z.string().min(3, "Question must be at least 3 characters").max(1000, "Question is too long"),
@@ -63,14 +63,14 @@ export function QAWorkspace() {
   }
 
   return (
-    <Card className="flex flex-col h-full border-muted-foreground/20 shadow-md overflow-hidden bg-card" data-testid="qa-workspace">
-      <CardHeader className="border-b bg-muted/30 pb-4 shrink-0">
+    <Card className="flex flex-col h-full border-border shadow-sm overflow-hidden bg-background" data-testid="qa-workspace">
+      <CardHeader className="border-b border-border bg-card/50 pb-4 shrink-0">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-5 w-5 text-primary" />
-          <CardTitle>Grounded Q&A</CardTitle>
+          <Cpu className="h-5 w-5 text-primary" />
+          <CardTitle className="text-base font-semibold">Intelligence Engine</CardTitle>
         </div>
-        <CardDescription>
-          Ask questions against the indexed knowledge base. The LLM will only answer using retrieved chunks.
+        <CardDescription className="text-xs">
+          Query the ingested corpus. Synthesis is strictly constrained to retrieved context blocks.
         </CardDescription>
       </CardHeader>
       
@@ -79,12 +79,14 @@ export function QAWorkspace() {
         className="flex-1 overflow-y-auto p-4 space-y-6 bg-secondary/10"
       >
         {history.length === 0 && (
-          <div className="h-full flex flex-col items-center justify-center text-center px-8 text-muted-foreground/60 space-y-4">
-            <BookOpen className="h-12 w-12" />
+          <div className="h-full flex flex-col items-center justify-center text-center px-8 text-muted-foreground/50 space-y-4">
+            <div className="bg-background p-4 rounded-xl border border-border shadow-sm">
+              <BookOpen className="h-8 w-8 text-muted-foreground" />
+            </div>
             <div className="space-y-1">
-              <p className="font-medium text-foreground">Awaiting your question</p>
-              <p className="text-sm text-muted-foreground">
-                Indexed documents will be searched and used to form a grounded response.
+              <p className="font-semibold text-foreground">Awaiting Query</p>
+              <p className="text-xs text-muted-foreground max-w-[280px]">
+                The engine will retrieve relevant chunks and construct a grounded response.
               </p>
             </div>
           </div>
@@ -94,35 +96,45 @@ export function QAWorkspace() {
           <div key={i} className="space-y-3" data-testid={`chat-entry-${i}`}>
             {entry.type === "question" ? (
               <div className="flex justify-end">
-                <div className="bg-primary text-primary-foreground px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-[85%] shadow-sm text-sm font-medium">
+                <div className="bg-foreground text-background px-4 py-3 rounded-xl rounded-tr-sm max-w-[85%] shadow-sm text-sm font-medium">
                   {entry.content}
                 </div>
               </div>
             ) : entry.type === "error" ? (
               <div className="flex justify-start">
-                <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-2.5 rounded-2xl rounded-tl-sm max-w-[85%] text-sm">
+                <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-xl rounded-tl-sm max-w-[85%] text-sm font-medium">
                   {entry.content}
                 </div>
               </div>
             ) : (
               <div className="flex justify-start">
-                <div className="bg-card border border-border shadow-sm px-5 py-4 rounded-2xl rounded-tl-sm max-w-[90%] space-y-4">
-                  <div className="prose prose-sm dark:prose-invert max-w-none">
-                    {entry.content}
+                <div className="bg-card border border-border shadow-sm rounded-xl rounded-tl-sm max-w-[95%] w-full overflow-hidden">
+                  <div className="px-5 py-4 space-y-4">
+                    <div className="prose prose-sm dark:prose-invert max-w-none text-foreground leading-relaxed">
+                      {entry.content}
+                    </div>
                   </div>
                   
                   {entry.answerData && entry.answerData.sources.length > 0 && (
-                    <div className="mt-4 pt-4 border-t space-y-3">
-                      <div className="flex items-center gap-2">
-                        <Badge variant={entry.answerData.grounded ? "default" : "secondary"} className="text-[10px]">
-                          {entry.answerData.grounded ? "Grounded" : "Uncertain Grounding"}
-                        </Badge>
-                        <span className="text-xs text-muted-foreground font-mono">
-                          Retrieved {entry.answerData.retrievedChunks} chunks
+                    <div className="bg-secondary/30 border-t border-border px-5 py-4 space-y-3">
+                      <div className="flex items-center gap-3">
+                        {entry.answerData.grounded ? (
+                          <Badge variant="outline" className="text-[10px] font-mono py-0 h-5 border-emerald-500/30 text-emerald-600 bg-emerald-500/10 flex items-center gap-1">
+                            <ShieldCheck className="h-3 w-3" />
+                            GROUNDED
+                          </Badge>
+                        ) : (
+                          <Badge variant="outline" className="text-[10px] font-mono py-0 h-5 border-amber-500/30 text-amber-600 bg-amber-500/10 flex items-center gap-1">
+                            <ShieldAlert className="h-3 w-3" />
+                            UNCERTAIN
+                          </Badge>
+                        )}
+                        <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">
+                          {entry.answerData.retrievedChunks} chunks retrieved
                         </span>
                       </div>
                       
-                      <div className="space-y-2">
+                      <div className="grid gap-2">
                         {entry.answerData.sources.map((source, idx) => (
                           <SourceCard key={`${source.documentId}-${idx}`} source={source} idx={idx} />
                         ))}
@@ -137,27 +149,31 @@ export function QAWorkspace() {
 
         {askMutation.isPending && (
           <div className="flex justify-start" data-testid="chat-entry-loading">
-            <div className="bg-card border border-border px-5 py-4 rounded-2xl rounded-tl-sm w-full max-w-[70%] space-y-3">
-              <div className="flex items-center gap-2 text-primary text-sm font-medium">
-                <Loader2 className="h-4 w-4 animate-spin" />
-                Synthesizing answer...
+            <div className="bg-card border border-border rounded-xl rounded-tl-sm w-full max-w-[80%] shadow-sm">
+              <div className="px-5 py-4 space-y-4">
+                <div className="flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-widest">
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  Synthesizing...
+                </div>
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-[90%]" />
+                  <Skeleton className="h-4 w-[60%]" />
+                </div>
               </div>
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-[90%]" />
-              <Skeleton className="h-4 w-[60%]" />
             </div>
           </div>
         )}
       </div>
 
-      <div className="p-4 border-t bg-card shrink-0">
+      <div className="p-4 border-t border-border bg-card shrink-0">
         <form 
           onSubmit={form.handleSubmit(onSubmit)} 
-          className="relative rounded-xl border border-input bg-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background transition-shadow shadow-sm"
+          className="relative rounded-lg border border-input bg-background focus-within:ring-1 focus-within:ring-primary focus-within:border-primary transition-shadow shadow-sm"
         >
           <Textarea 
-            placeholder="Ask about your documents..."
-            className="min-h-[60px] resize-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent py-3 px-4 pr-14 text-sm"
+            placeholder="Query the corpus..."
+            className="min-h-[56px] resize-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent py-3 px-4 pr-12 text-sm"
             data-testid="input-question"
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
@@ -172,17 +188,17 @@ export function QAWorkspace() {
               type="submit" 
               size="icon" 
               disabled={askMutation.isPending || !form.watch("question")?.trim()}
-              className="h-8 w-8 rounded-lg"
+              className="h-8 w-8 rounded-md"
               data-testid="button-ask"
             >
               <CornerDownLeft className="h-4 w-4" />
-              <span className="sr-only">Ask</span>
+              <span className="sr-only">Submit Query</span>
             </Button>
           </div>
         </form>
         <div className="mt-2 text-center">
           <span className="text-[10px] text-muted-foreground uppercase tracking-widest font-semibold">
-            Press Enter to ask, Shift+Enter for new line
+            Return to execute · Shift+Return for newline
           </span>
         </div>
       </div>
@@ -192,18 +208,18 @@ export function QAWorkspace() {
 
 function SourceCard({ source, idx }: { source: Source, idx: number }) {
   return (
-    <div className="rounded-lg bg-muted/50 border border-border/50 p-3 space-y-2 text-sm" data-testid={`card-source-${idx}`}>
+    <div className="rounded-md bg-background border border-border/50 p-3 space-y-2" data-testid={`card-source-${idx}`}>
       <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5 overflow-hidden">
+        <div className="flex items-center gap-2 overflow-hidden">
           <Quote className="h-3 w-3 text-muted-foreground shrink-0" />
           <span className="font-semibold text-xs truncate text-foreground">{source.documentName}</span>
-          <span className="text-xs text-muted-foreground shrink-0 font-mono">Chunk {source.chunkIndex}</span>
+          <span className="text-[10px] text-muted-foreground shrink-0 font-mono border-l border-border pl-2">Chunk {source.chunkIndex}</span>
         </div>
-        <Badge variant="outline" className="text-[9px] font-mono py-0 h-4 bg-background">
-          Score: {source.score.toFixed(2)}
+        <Badge variant="secondary" className="text-[9px] font-mono py-0 h-4 rounded-sm bg-muted text-muted-foreground">
+          Rel: {source.score.toFixed(2)}
         </Badge>
       </div>
-      <p className="text-xs text-muted-foreground font-mono leading-relaxed line-clamp-3 bg-background/50 rounded p-2 border border-border/40">
+      <p className="text-xs text-muted-foreground font-mono leading-relaxed line-clamp-2 pl-5">
         {source.excerpt}
       </p>
     </div>

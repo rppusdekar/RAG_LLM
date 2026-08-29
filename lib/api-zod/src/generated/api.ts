@@ -25,13 +25,18 @@ export const ListDocumentsResponseItem = zod.object({
   "name": zod.string(),
   "content": zod.string(),
   "chunkCount": zod.number(),
-  "createdAt": zod.string()
+  "createdAt": zod.string(),
+  "format": zod.enum(['txt', 'md', 'pdf', 'html', 'docx', 'xlsx', 'xls']),
+  "sourceType": zod.enum(['sample', 'paste', 'upload']),
+  "mimeType": zod.string(),
+  "sizeBytes": zod.number(),
+  "extractedCharacterCount": zod.number()
 })
 export const ListDocumentsResponse = zod.array(ListDocumentsResponseItem)
 
 
 /**
- * @summary Add a text document to the knowledge base
+ * @summary Add pasted text or Markdown to the knowledge base
  */
 export const createDocumentBodyNameMax = 120;
 
@@ -50,7 +55,33 @@ export const CreateDocumentResponse = zod.object({
   "name": zod.string(),
   "content": zod.string(),
   "chunkCount": zod.number(),
-  "createdAt": zod.string()
+  "createdAt": zod.string(),
+  "format": zod.enum(['txt', 'md', 'pdf', 'html', 'docx', 'xlsx', 'xls']),
+  "sourceType": zod.enum(['sample', 'paste', 'upload']),
+  "mimeType": zod.string(),
+  "sizeBytes": zod.number(),
+  "extractedCharacterCount": zod.number()
+})
+
+
+/**
+ * @summary Upload and extract a supported document
+ */
+export const UploadDocumentBody = zod.object({
+  "file": zod.instanceof(File)
+})
+
+export const UploadDocumentResponse = zod.object({
+  "id": zod.string(),
+  "name": zod.string(),
+  "content": zod.string(),
+  "chunkCount": zod.number(),
+  "createdAt": zod.string(),
+  "format": zod.enum(['txt', 'md', 'pdf', 'html', 'docx', 'xlsx', 'xls']),
+  "sourceType": zod.enum(['sample', 'paste', 'upload']),
+  "mimeType": zod.string(),
+  "sizeBytes": zod.number(),
+  "extractedCharacterCount": zod.number()
 })
 
 

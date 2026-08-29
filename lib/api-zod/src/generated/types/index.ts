@@ -8,7 +8,10 @@
 
 export * from './answer';
 export * from './document';
+export * from './documentFormat';
 export * from './documentInput';
+export * from './documentSourceType';
+export * from './documentUploadInput';
 export * from './healthStatus';
 export * from './knowledgeSummary';
 export * from './questionInput';

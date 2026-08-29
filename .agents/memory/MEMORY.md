@@ -1,1 +1,2 @@
 - [Managed AI verification](managed-ai-verification.md) — Replit-managed OpenAI provisioning may pause for phone verification; retry setup afterward.
+- [PDF parser bundling](pdf-parser-bundling.md) — keep pdf-parse and native canvas packages external to the API bundle so PDF.js workers initialize in Node.

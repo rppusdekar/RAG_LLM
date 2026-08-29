@@ -1,11 +1,12 @@
-# Grounded Docs
+# ContextForge
 
-Grounded Docs is a minimal document question-answering application that
-demonstrates the core mechanics of **retrieval-augmented generation (RAG)**.
+ContextForge is a document intelligence workspace that demonstrates the core
+mechanics of **retrieval-augmented generation (RAG)** with inspectable retrieval.
 
-Users can paste text or upload a `.txt`/`.md` file, index it as a document, ask
-a question, and receive an answer generated from retrieved document chunks.
-Answers include source excerpts and verifiable `[Source N]` citations.
+Users can paste text or upload Markdown, text, PDF, HTML, Word, and Excel files.
+The server extracts and normalizes their text, indexes searchable chunks, and
+generates answers from retrieved evidence. Answers include source excerpts and
+verifiable `[Source N]` citations.
 
 ## RAG pipeline
 
@@ -33,7 +34,12 @@ Ingest → Chunk → Retrieve → Generate → Cite
 
 ## Features
 
-- Paste text or upload `.txt` and `.md` files
+- Paste text or upload `.txt`, `.md`, `.pdf`, `.html`, `.htm`, `.docx`, `.xlsx`,
+  and `.xls` files
+- Extract selectable PDF text, safe HTML body text, DOCX content, and
+  sheet/row-aware spreadsheet text
+- Enforce a 10 MB upload limit, extension allowlist, safe filenames, file
+  signature checks, malformed-file handling, and empty-extraction rejection
 - Normalize and split documents into searchable chunks
 - Deterministic lexical retrieval without vector infrastructure
 - Grounded answer generation using `gpt-5.4-mini`
@@ -70,6 +76,8 @@ artifacts/grounded-docs/
 
 artifacts/api-server/src/routes/knowledge.ts
                                       # ingestion, retrieval, and LLM route
+artifacts/api-server/src/lib/document-extraction.ts
+                                       # format validation and text extraction
 
 lib/api-spec/openapi.yaml              # API source of truth
 lib/api-client-react/                  # generated React Query client
@@ -142,7 +150,8 @@ The API is mounted under `/api`.
 | Method | Endpoint | Purpose |
 |---|---|---|
 | `GET` | `/api/documents` | List indexed documents |
-| `POST` | `/api/documents` | Add and chunk a text document |
+| `POST` | `/api/documents` | Add and chunk pasted text or Markdown |
+| `POST` | `/api/documents/upload` | Upload, extract, and index a supported file |
 | `GET` | `/api/knowledge-summary` | Return document, chunk, and character counts |
 | `POST` | `/api/ask` | Retrieve context and generate a cited answer |
 
@@ -156,6 +165,25 @@ curl -X POST http://localhost:8080/api/documents \
     "content": "The service uses a queue for asynchronous processing. Consumers are idempotent so retries do not create duplicate side effects."
   }'
 ```
+
+### Upload a document
+
+```bash
+curl -X POST http://localhost:8080/api/documents/upload \
+  -F 'file=@./architecture.pdf'
+```
+
+Supported uploads:
+
+| Format | Extensions | Extraction behavior |
+|---|---|---|
+| Plain text / Markdown | `.txt`, `.md` | UTF-8 text |
+| PDF | `.pdf` | Selectable text with page context |
+| HTML | `.html`, `.htm` | Visible text; scripts, styles, and templates removed |
+| Word | `.docx` | Raw document text |
+| Excel | `.xlsx`, `.xls` | Sheet names and numbered rows preserved |
+
+Legacy `.doc` files and OCR for scanned PDFs are intentionally out of scope.
 
 ### Ask a question
 
@@ -209,6 +237,8 @@ This is a learning/demo application, not a production document platform.
 - There is no authentication, workspace isolation, or document deletion.
 - CORS and rate limiting are intended for the development demo environment.
 - Retrieval is lexical and intentionally does not use embeddings.
+- PDF extraction requires selectable text; scanned image-only PDFs need OCR.
+- Uploaded files are processed in memory and are not retained as original files.
 
 Production use would require authenticated access, scoped persistent storage,
 stricter CORS, stronger rate limiting, audit logging, and retrieval evaluation.
@@ -222,8 +252,9 @@ PORT=19246 BASE_PATH=/grounded-docs/ \
 pnpm --filter @workspace/api-server run build
 ```
 
-The browser-tested flow covers document indexing, summary refresh, question
-submission, grounded answer generation, and matching source citation display.
+The tested flow covers multi-format extraction, upload validation, document
+metadata, summary refresh, question submission, grounded answer generation, and
+matching source citation display.
 
 For the more detailed app-specific notes, see
 [artifacts/grounded-docs/README.md](artifacts/grounded-docs/README.md).

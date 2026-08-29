@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { Router, type IRouter } from "express";
+import multer from "multer";
 import {
   AskKnowledgeBaseBody,
   AskKnowledgeBaseResponse,
@@ -7,7 +8,16 @@ import {
   CreateDocumentResponse,
   GetKnowledgeSummaryResponse,
   ListDocumentsResponse,
+  UploadDocumentResponse,
 } from "@workspace/api-zod";
+import {
+  DocumentExtractionError,
+  getDocumentFormat,
+  MAX_UPLOAD_BYTES,
+  sanitizeDocumentName,
+  extractDocumentText,
+  type DocumentFormat,
+} from "../lib/document-extraction";
 
 type KnowledgeDocument = {
   id: string;
@@ -15,6 +25,11 @@ type KnowledgeDocument = {
   content: string;
   chunks: string[];
   createdAt: string;
+  format: DocumentFormat;
+  sourceType: "sample" | "paste" | "upload";
+  mimeType: string;
+  sizeBytes: number;
+  extractedCharacterCount: number;
 };
 
 type RankedChunk = {
@@ -28,6 +43,14 @@ type RankedChunk = {
 const askRequests = new Map<string, number[]>();
 const ASK_LIMIT = 12;
 const ASK_WINDOW_MS = 60_000;
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: MAX_UPLOAD_BYTES,
+    files: 1,
+    fields: 0,
+  },
+});
 
 const STOP_WORDS = new Set([
   "a",
@@ -80,13 +103,28 @@ AWS Lambda runs short-lived functions in response to events. Important design co
 
 const documents: KnowledgeDocument[] = [...sampleDocuments];
 
-function createStoredDocument(name: string, content: string): KnowledgeDocument {
+function createStoredDocument(
+  name: string,
+  content: string,
+  metadata: Partial<
+    Pick<
+      KnowledgeDocument,
+      "format" | "sourceType" | "mimeType" | "sizeBytes"
+    >
+  > = {},
+): KnowledgeDocument {
+  const normalizedContent = content.trim();
   return {
     id: randomUUID(),
     name,
-    content: content.trim(),
-    chunks: chunkText(content),
+    content: normalizedContent,
+    chunks: chunkText(normalizedContent),
     createdAt: new Date().toISOString(),
+    format: metadata.format ?? "md",
+    sourceType: metadata.sourceType ?? "sample",
+    mimeType: metadata.mimeType ?? "text/markdown",
+    sizeBytes: metadata.sizeBytes ?? Buffer.byteLength(normalizedContent, "utf8"),
+    extractedCharacterCount: normalizedContent.length,
   };
 }
 
@@ -212,6 +250,11 @@ function publicDocument(document: KnowledgeDocument) {
     content: document.content,
     chunkCount: document.chunks.length,
     createdAt: document.createdAt,
+    format: document.format,
+    sourceType: document.sourceType,
+    mimeType: document.mimeType,
+    sizeBytes: document.sizeBytes,
+    extractedCharacterCount: document.extractedCharacterCount,
   };
 }
 
@@ -228,10 +271,71 @@ router.post("/documents", (req, res) => {
     return;
   }
 
-  const document = createStoredDocument(parsed.data.name, parsed.data.content);
+  const format: DocumentFormat = parsed.data.name.toLowerCase().endsWith(".txt")
+    ? "txt"
+    : "md";
+  const document = createStoredDocument(parsed.data.name, parsed.data.content, {
+    format,
+    sourceType: "paste",
+    mimeType: format === "txt" ? "text/plain" : "text/markdown",
+  });
   documents.unshift(document);
   res.status(201).json(CreateDocumentResponse.parse(publicDocument(document)));
 });
+
+router.post(
+  "/documents/upload",
+  (req, res, next) => {
+    upload.single("file")(req, res, (error) => {
+      if (error instanceof multer.MulterError) {
+        const tooLarge = error.code === "LIMIT_FILE_SIZE";
+        res.status(tooLarge ? 413 : 400).json({
+          error: tooLarge
+            ? `The file is too large. Upload a document smaller than ${MAX_UPLOAD_BYTES / 1024 / 1024} MB.`
+            : `The upload could not be processed: ${error.message}`,
+        });
+        return;
+      }
+      if (error) {
+        req.log?.warn({ err: error }, "Document upload rejected");
+        res.status(400).json({ error: "The upload could not be processed." });
+        return;
+      }
+      next();
+    });
+  },
+  async (req, res) => {
+    if (!req.file) {
+      res.status(400).json({ error: "Choose a document to upload." });
+      return;
+    }
+
+    try {
+      const name = sanitizeDocumentName(req.file.originalname);
+      const format = getDocumentFormat(name);
+      const content = await extractDocumentText(req.file.buffer, format);
+      const document = createStoredDocument(name, content, {
+        format,
+        sourceType: "upload",
+        mimeType: mimeTypeForFormat(format),
+        sizeBytes: req.file.size,
+      });
+
+      documents.unshift(document);
+      res.status(201).json(UploadDocumentResponse.parse(publicDocument(document)));
+    } catch (error) {
+      if (error instanceof DocumentExtractionError) {
+        res.status(error.statusCode).json({ error: error.message });
+        return;
+      }
+
+      req.log?.error({ err: error }, "Document extraction failed");
+      res.status(500).json({
+        error: "The document could not be extracted. Please try another file.",
+      });
+    }
+  },
+);
 
 router.get("/knowledge-summary", (_req, res) => {
   const response = {
@@ -244,6 +348,19 @@ router.get("/knowledge-summary", (_req, res) => {
   };
   res.json(GetKnowledgeSummaryResponse.parse(response));
 });
+
+function mimeTypeForFormat(format: DocumentFormat): string {
+  const mimeTypes: Record<DocumentFormat, string> = {
+    txt: "text/plain",
+    md: "text/markdown",
+    pdf: "application/pdf",
+    html: "text/html",
+    docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    xls: "application/vnd.ms-excel",
+  };
+  return mimeTypes[format];
+}
 
 router.post("/ask", async (req, res) => {
   if (!canAsk(req.ip || "unknown")) {

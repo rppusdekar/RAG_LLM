@@ -43,7 +43,7 @@ paths:
     post:
       operationId: createDocument
       tags: [knowledge]
-      summary: Add a text document to the knowledge base
+      summary: Add pasted text or Markdown to the knowledge base
       requestBody:
         required: true
         content:
@@ -59,6 +59,30 @@ paths:
                 $ref: "#/components/schemas/Document"
         "400":
           description: Invalid document
+  /documents/upload:
+    post:
+      operationId: uploadDocument
+      tags: [knowledge]
+      summary: Upload and extract a supported document
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/DocumentUploadInput"
+      responses:
+        "201":
+          description: Document uploaded and indexed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+        "400":
+          description: Invalid or empty document
+        "413":
+          description: Document is too large
+        "415":
+          description: Unsupported document format
   /ask:
     post:
       operationId: askKnowledgeBase
@@ -104,7 +128,7 @@ components:
         - status
     Document:
       type: object
-      required: [id, name, content, chunkCount, createdAt]
+      required: [id, name, content, chunkCount, createdAt, format, sourceType, mimeType, sizeBytes, extractedCharacterCount]
       properties:
         id:
           type: string
@@ -116,6 +140,18 @@ components:
           type: integer
         createdAt:
           type: string
+        format:
+          type: string
+          enum: [txt, md, pdf, html, docx, xlsx, xls]
+        sourceType:
+          type: string
+          enum: [sample, paste, upload]
+        mimeType:
+          type: string
+        sizeBytes:
+          type: integer
+        extractedCharacterCount:
+          type: integer
     DocumentInput:
       type: object
       required: [name, content]
@@ -128,6 +164,13 @@ components:
           type: string
           minLength: 20
           maxLength: 100000
+    DocumentUploadInput:
+      type: object
+      required: [file]
+      properties:
+        file:
+          type: string
+          format: binary
     QuestionInput:
       type: object
       required: [question]

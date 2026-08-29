@@ -23,6 +23,7 @@ import type {
   Answer,
   Document,
   DocumentInput,
+  DocumentUploadInput,
   HealthStatus,
   KnowledgeSummary,
   QuestionInput
@@ -219,7 +220,7 @@ export const getCreateDocumentUrl = () => {
 }
 
 /**
- * @summary Add a text document to the knowledge base
+ * @summary Add pasted text or Markdown to the knowledge base
  */
 export const createDocument = async (documentInput: DocumentInput, options?: RequestInit): Promise<Document> => {
 
@@ -268,7 +269,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type CreateDocumentMutationError = ErrorType<void>
 
     /**
- * @summary Add a text document to the knowledge base
+ * @summary Add pasted text or Markdown to the knowledge base
  */
 export const useCreateDocument = <TError = ErrorType<void>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof createDocument>>, TError,{data: BodyType<DocumentInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
@@ -279,6 +280,79 @@ export const useCreateDocument = <TError = ErrorType<void>,
         TContext
       > => {
       return useMutation(getCreateDocumentMutationOptions(options));
+    }
+
+export const getUploadDocumentUrl = () => {
+
+
+
+
+  return `/api/documents/upload`
+}
+
+/**
+ * @summary Upload and extract a supported document
+ */
+export const uploadDocument = async (documentUploadInput: DocumentUploadInput, options?: RequestInit): Promise<Document> => {
+    const formData = new FormData();
+formData.append(`file`, documentUploadInput.file);
+
+  return customFetch<Document>(getUploadDocumentUrl(),
+  {
+    ...options,
+    method: 'POST'
+    ,
+    body: formData
+  }
+);}
+
+
+
+
+
+export const getUploadDocumentMutationOptions = <TError = ErrorType<void>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof uploadDocument>>, TError,{data: BodyType<DocumentUploadInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+): UseMutationOptions<Awaited<ReturnType<typeof uploadDocument>>, TError,{data: BodyType<DocumentUploadInput>}, TContext> => {
+
+const mutationKey = ['uploadDocument'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof uploadDocument>>, {data: BodyType<DocumentUploadInput>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  uploadDocument(data,requestOptions)
+        }
+
+
+
+
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UploadDocumentMutationResult = NonNullable<Awaited<ReturnType<typeof uploadDocument>>>
+    export type UploadDocumentMutationBody = BodyType<DocumentUploadInput>
+    export type UploadDocumentMutationError = ErrorType<void>
+
+    /**
+ * @summary Upload and extract a supported document
+ */
+export const useUploadDocument = <TError = ErrorType<void>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof uploadDocument>>, TError,{data: BodyType<DocumentUploadInput>}, TContext>, request?: SecondParameter<typeof customFetch>}
+ ): UseMutationResult<
+        Awaited<ReturnType<typeof uploadDocument>>,
+        TError,
+        {data: BodyType<DocumentUploadInput>},
+        TContext
+      > => {
+      return useMutation(getUploadDocumentMutationOptions(options));
     }
 
 export const getAskKnowledgeBaseUrl = () => {

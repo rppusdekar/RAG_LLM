@@ -5,6 +5,8 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
+import type { DocumentFormat } from './documentFormat';
+import type { DocumentSourceType } from './documentSourceType';
 
 export interface Document {
   id: string;
@@ -12,4 +14,9 @@ export interface Document {
   content: string;
   chunkCount: number;
   createdAt: string;
+  format: DocumentFormat;
+  sourceType: DocumentSourceType;
+  mimeType: string;
+  sizeBytes: number;
+  extractedCharacterCount: number;
 }

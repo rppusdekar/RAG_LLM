@@ -1,15 +1,19 @@
-# Grounded Docs
+# ContextForge
 
-Grounded Docs is a minimal document question-answering application that demonstrates
-the core mechanics of retrieval-augmented generation (RAG).
+ContextForge is a production-oriented document intelligence demo that makes the
+core mechanics of retrieval-augmented generation (RAG) inspectable.
 
-Users can paste text or upload a `.txt`/`.md` file, index it as a document, ask a
-question, and receive an answer generated only from retrieved document chunks. Each
-answer includes source excerpts and verifiable `[Source N]` citations.
+Users can paste text or upload `.txt`, `.md`, `.pdf`, `.html`, `.htm`, `.docx`,
+`.xlsx`, and `.xls` files. The server extracts their content, indexes searchable
+chunks, and generates answers only from retrieved evidence. Each answer includes
+source excerpts and verifiable `[Source N]` citations.
 
 ## What this demonstrates
 
-- Document ingestion and normalization
+- Server-side multi-format extraction and normalization
+- Multipart upload validation with a 10 MB limit, safe filenames, extension
+  allowlisting, signature checks, and explicit malformed/empty-file errors
+- Page context for PDF text and sheet/row context for spreadsheets
 - Deterministic text chunking
 - Lexical relevance ranking without vector infrastructure
 - Context-limited LLM prompting
@@ -55,6 +59,8 @@ artifacts/grounded-docs/
 
 artifacts/api-server/src/routes/knowledge.ts
                                       # ingestion, chunking, retrieval, LLM route
+artifacts/api-server/src/lib/document-extraction.ts
+                                       # validation and format-specific extraction
 
 lib/api-spec/openapi.yaml              # source API contract
 lib/api-client-react/                  # generated React Query client
@@ -123,7 +129,8 @@ The API is mounted under `/api`.
 | Method | Endpoint | Purpose |
 |---|---|---|
 | `GET` | `/api/documents` | List indexed documents |
-| `POST` | `/api/documents` | Add and chunk a text document |
+| `POST` | `/api/documents` | Add and chunk pasted text or Markdown |
+| `POST` | `/api/documents/upload` | Upload, extract, and index a supported file |
 | `GET` | `/api/knowledge-summary` | Return document, chunk, and character counts |
 | `POST` | `/api/ask` | Retrieve context and generate a cited answer |
 
@@ -137,6 +144,21 @@ curl -X POST http://localhost:8080/api/documents \
     "content": "The service uses a queue for asynchronous processing. Consumers are idempotent so retries do not create duplicate side effects."
   }'
 ```
+
+### Upload a document
+
+```bash
+curl -X POST http://localhost:8080/api/documents/upload \
+  -F 'file=@./architecture.docx'
+```
+
+| Format | Extensions | Notes |
+|---|---|---|
+| Text / Markdown | `.txt`, `.md` | UTF-8 input |
+| PDF | `.pdf` | Selectable text only; OCR is not enabled |
+| HTML | `.html`, `.htm` | Scripts, styles, templates, and SVG removed |
+| Word | `.docx` | Legacy `.doc` is not supported |
+| Excel | `.xlsx`, `.xls` | Sheet names and row numbers are retained |
 
 ### Ask a question
 
@@ -194,6 +216,8 @@ This is a learning/demo application, not a production document platform.
   database storage.
 - CORS is configured for the shared development environment.
 - Retrieval is lexical and intentionally does not use embeddings.
+- Uploaded originals are processed in memory and are not stored.
+- Image-only PDFs require OCR and are rejected when no usable text is found.
 - Production use would require authentication, authorization, persistent scoped
   storage, stricter CORS, stronger rate limiting, audit logging, and a more
   complete retrieval evaluation strategy.
@@ -209,10 +233,11 @@ PORT=19246 BASE_PATH=/grounded-docs/ \
 pnpm --filter @workspace/api-server run build
 ```
 
-The tested browser flow covers:
+The tested flow covers:
 
 1. Loading the knowledge workspace
-2. Indexing a document through the UI
-3. Refreshing document and chunk counts
-4. Asking a question about the new document
-5. Rendering a grounded answer with a matching source citation
+2. Uploading and extracting Markdown, HTML, PDF, DOCX, and XLSX documents
+3. Rejecting unsupported or malformed uploads
+4. Refreshing document, chunk, and character counts
+5. Asking a question about an indexed document
+6. Rendering a grounded answer with a matching source citation
